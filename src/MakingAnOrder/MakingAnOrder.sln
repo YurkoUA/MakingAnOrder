@@ -9,6 +9,10 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MakingAnOrder.Database", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakingAnOrder.Data.Entity", "MakingAnOrder.Data.Entity\MakingAnOrder.Data.Entity.csproj", "{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakingAnOrder.Infrastructure", "MakingAnOrder.Infrastructure\MakingAnOrder.Infrastructure.csproj", "{45686486-445D-4FFC-B246-D459336D7EBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakingAnOrder.Data", "MakingAnOrder.Data\MakingAnOrder.Data.csproj", "{D58AAD5D-D23D-4E86-BACB-07C2DEC81C86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45686486-445D-4FFC-B246-D459336D7EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45686486-445D-4FFC-B246-D459336D7EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45686486-445D-4FFC-B246-D459336D7EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45686486-445D-4FFC-B246-D459336D7EBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D58AAD5D-D23D-4E86-BACB-07C2DEC81C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D58AAD5D-D23D-4E86-BACB-07C2DEC81C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D58AAD5D-D23D-4E86-BACB-07C2DEC81C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D58AAD5D-D23D-4E86-BACB-07C2DEC81C86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

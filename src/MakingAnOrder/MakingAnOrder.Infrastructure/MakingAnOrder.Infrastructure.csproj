@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}</ProjectGuid>
+    <ProjectGuid>{45686486-445D-4FFC-B246-D459336D7EBA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MakingAnOrder.Data.Entity</RootNamespace>
-    <AssemblyName>MakingAnOrder.Data.Entity</AssemblyName>
+    <RootNamespace>MakingAnOrder.Infrastructure</RootNamespace>
+    <AssemblyName>MakingAnOrder.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -31,15 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
-    </Reference>
-    <Reference Include="Dapper.Contrib, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.Contrib.1.50.5\lib\net451\Dapper.Contrib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,13 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Order.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="ProductOrder.cs" />
+    <Compile Include="Database\IDbContext.cs" />
+    <Compile Include="DTO\MakeOrderProductDTO.cs" />
+    <Compile Include="DTO\OrderFilterDTO.cs" />
+    <Compile Include="Enum\OrderDirection.cs" />
+    <Compile Include="Interfaces\IDateRange.cs" />
+    <Compile Include="Interfaces\IPaging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IOrderRepository.cs" />
+    <Compile Include="Repositories\IProductRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\MakingAnOrder.Data.Entity\MakingAnOrder.Data.Entity.csproj">
+      <Project>{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}</Project>
+      <Name>MakingAnOrder.Data.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -66,5 +66,6 @@
     <Build Include="dbo\Tables\Order.sql" />
     <Build Include="dbo\Tables\OrderProduct.sql" />
     <Build Include="dbo\Stored Procedures\USPGetOrders.sql" />
+    <Build Include="dbo\Stored Procedures\USPProductDelete.sql" />
   </ItemGroup>
 </Project>
