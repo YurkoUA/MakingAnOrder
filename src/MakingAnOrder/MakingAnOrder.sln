@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakingAnOrder", "MakingAnOr
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MakingAnOrder.Database", "MakingAnOrder.Database\MakingAnOrder.Database.sqlproj", "{237383F2-2DA5-4E04-9C6F-B9C062956AE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakingAnOrder.Data.Entity", "MakingAnOrder.Data.Entity\MakingAnOrder.Data.Entity.csproj", "{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{237383F2-2DA5-4E04-9C6F-B9C062956AE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{237383F2-2DA5-4E04-9C6F-B9C062956AE8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{237383F2-2DA5-4E04-9C6F-B9C062956AE8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
