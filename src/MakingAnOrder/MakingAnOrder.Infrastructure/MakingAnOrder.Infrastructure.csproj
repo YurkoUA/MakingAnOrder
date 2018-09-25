@@ -45,6 +45,7 @@
     <Compile Include="DTO\MakeOrderProductDTO.cs" />
     <Compile Include="DTO\OrderFilterDTO.cs" />
     <Compile Include="Enum\OrderDirection.cs" />
+    <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Interfaces\IDateRange.cs" />
     <Compile Include="Interfaces\IPaging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

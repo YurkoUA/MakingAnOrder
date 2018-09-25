@@ -6,7 +6,7 @@ namespace MakingAnOrder.Infrastructure.Repositories
 {
     public interface IOrderRepository : IRepository
     {
-        IEnumerable<Order> GetAllOrders(OrderFilterDTO orderFilter);
+        IEnumerable<Order> GetAllOrders(OrderFilterDTO orderFilter, out int totalCount);
         int MakeOrder(IEnumerable<MakeOrderProductDTO> products);
     }
 }

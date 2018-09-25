@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Data;
+using Dapper;
 using MakingAnOrder.Data.Entity;
 using MakingAnOrder.Infrastructure.Database;
 using MakingAnOrder.Infrastructure.DTO;
+using MakingAnOrder.Infrastructure.Extensions;
 using MakingAnOrder.Infrastructure.Repositories;
 
 namespace MakingAnOrder.Data.Repositories
@@ -16,14 +15,44 @@ namespace MakingAnOrder.Data.Repositories
         {
         }
 
-        public IEnumerable<Order> GetAllOrders(OrderFilterDTO orderFilter)
+        public IEnumerable<Order> GetAllOrders(OrderFilterDTO orderFilter, out int totalCount)
         {
-            throw new NotImplementedException();
+            var param = new DynamicParameters();
+            param.Add("@orderDateStart", orderFilter.StartDate);
+            param.Add("@orderDateEnd", orderFilter.EndDate);
+            param.Add("@offset", orderFilter.Offset);
+            param.Add("@take", orderFilter.Take);
+            param.Add("@orderByColumn", orderFilter.Column);
+            param.Add("@orderDirection", orderFilter.Direction);
+            param.Add("@totalCount", direction: ParameterDirection.Output);
+
+            var ordersDictionary = new Dictionary<int, Order>();
+
+            var orders = ExecuteSP<Order, ProductOrder, Order>("USPGetOrders", (order, product) =>
+            {
+                if (!ordersDictionary.TryGetValue(order.Id, out Order orderEntry))
+                {
+                    orderEntry = order;
+                    orderEntry.Products = new List<ProductOrder>();
+                    ordersDictionary.Add(order.Id, orderEntry);
+                }
+
+                orderEntry.Products.Add(product);
+                return orderEntry;
+            }, "Id", param);
+
+            totalCount = param.Get<int>("@totalCount");
+            return orders;
         }
 
         public int MakeOrder(IEnumerable<MakeOrderProductDTO> products)
         {
-            throw new NotImplementedException();
+            var param = new DynamicParameters();
+            param.Add("@products", products.AsDataTableParam().AsTableValuedParameter("MakeOrderProductType"));
+            param.Add("@orderId", direction: ParameterDirection.Output);
+
+            ExecuteSP("USPMakeOrder", param);
+            return param.Get<int>("@orderId");
         }
     }
 }
