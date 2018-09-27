@@ -31,8 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,10 +54,10 @@
     <Compile Include="Enum\MessageLevel.cs" />
     <Compile Include="Enum\OrderDirection.cs" />
     <Compile Include="Extensions\DataTableExtensions.cs" />
-    <Compile Include="Interfaces\IDataContext.cs" />
     <Compile Include="Interfaces\IDateRange.cs" />
     <Compile Include="Interfaces\IInternalRequestContext.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
+    <Compile Include="Interfaces\IMappingService.cs" />
     <Compile Include="Interfaces\IPaging.cs" />
     <Compile Include="Interfaces\IRepositoryProvider.cs" />
     <Compile Include="Interfaces\IRequestContext.cs" />
@@ -59,12 +66,16 @@
     <Compile Include="Repositories\IOrderRepository.cs" />
     <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Util\MappingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MakingAnOrder.Data.Entity\MakingAnOrder.Data.Entity.csproj">
       <Project>{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}</Project>
       <Name>MakingAnOrder.Data.Entity</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

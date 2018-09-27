@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MakingAnOrder.Infrastructure.Database;
+using System;
 
 namespace MakingAnOrder.Infrastructure.Interfaces
 {
@@ -7,12 +8,12 @@ namespace MakingAnOrder.Infrastructure.Interfaces
         /// <summary>
         /// Gets instance of ORM entity
         /// </summary>
-        IDataContext DataContext { get; }
+        IDbContext DataContext { get; }
 
         /// <summary>
         /// Gets an instance of current logger
         /// </summary>
-        ILogger Logger { get; }
+        //ILogger Logger { get; }
 
         /// <summary>
         /// Gets an instance of domain model /repository factory
