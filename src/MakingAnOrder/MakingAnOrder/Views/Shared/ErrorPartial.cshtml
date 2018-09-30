@@ -1,0 +1,13 @@
+﻿@model IEnumerable<string>
+
+@if (Model.Any())
+{
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            @foreach (var e in Model)
+            {
+                <li>@e</li>
+            }
+        </ul>
+    </div>
+}

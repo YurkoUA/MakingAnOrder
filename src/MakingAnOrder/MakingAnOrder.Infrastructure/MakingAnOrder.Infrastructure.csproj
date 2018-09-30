@@ -53,6 +53,7 @@
     <Compile Include="DTO\OrderFilterDTO.cs" />
     <Compile Include="Enum\MessageLevel.cs" />
     <Compile Include="Enum\OrderDirection.cs" />
+    <Compile Include="Exceptions\CustomException.cs" />
     <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Interfaces\IDateRange.cs" />
     <Compile Include="Interfaces\IInternalRequestContext.cs" />
