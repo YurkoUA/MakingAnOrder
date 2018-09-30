@@ -29,17 +29,28 @@ AS
 	JOIN [Product] AS [p] ON p.[Id] = op.[ProductId]
 
 	WHERE o.[Date] BETWEEN @orderDateStart AND @orderDateEnd
+	GROUP BY	o.[Id], 
+				o.[Date], 
+				op.[OriginalPrice] - op.[Discount], 
+				op.[Quantity],
+
+				p.[Id],
+				p.[Name],
+				p.[Description],
+				op.[OriginalPrice],
+				op.[Discount],
+				op.[Quantity]
 
 	ORDER BY
-		CASE WHEN @orderByColumn = 'Id'					AND @orderDirection = 1 THEN [Id] END ASC,
+		CASE WHEN @orderByColumn = 'Id'					AND @orderDirection = 1 THEN o.[Id] END ASC,
 		CASE WHEN @orderByColumn = 'Date'				AND @orderDirection = 1 THEN [Date] END ASC,
-		CASE WHEN @orderByColumn = 'TotalPrice'			AND @orderDirection = 1 THEN [TotalPrice] END ASC,
-		CASE WHEN @orderByColumn = 'ProductsQuantity'	AND @orderDirection = 1 THEN [ProductsQuantity] END ASC,
+		CASE WHEN @orderByColumn = 'TotalPrice'			AND @orderDirection = 1 THEN SUM(op.[OriginalPrice] - op.[Discount]) END ASC,
+		CASE WHEN @orderByColumn = 'ProductsQuantity'	AND @orderDirection = 1 THEN SUM(op.[Quantity]) END ASC,
 
-		CASE WHEN @orderByColumn = 'Id'					AND @orderDirection = 0 THEN [Id] END DESC,
+		CASE WHEN @orderByColumn = 'Id'					AND @orderDirection = 0 THEN o.[Id] END DESC,
 		CASE WHEN @orderByColumn = 'Date'				AND @orderDirection = 0 THEN [Date] END DESC,
-		CASE WHEN @orderByColumn = 'TotalPrice'			AND @orderDirection = 0 THEN [TotalPrice] END DESC,
-		CASE WHEN @orderByColumn = 'ProductsQuantity'	AND @orderDirection = 0 THEN [ProductsQuantity] END DESC
+		CASE WHEN @orderByColumn = 'TotalPrice'			AND @orderDirection = 0 THEN SUM(op.[OriginalPrice] - op.[Discount]) END DESC,
+		CASE WHEN @orderByColumn = 'ProductsQuantity'	AND @orderDirection = 0 THEN SUM(op.[Quantity]) END DESC
 
 
 	OFFSET @offset ROWS FETCH NEXT @take ROWS ONLY

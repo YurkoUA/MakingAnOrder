@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MakingAnOrder.Infrastructure.Repositories
 {
-    public interface IRepository
+    public interface IRepository : IDisposable
     {
         IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class;
         TEntity Get<TEntity>(int id) where TEntity : class;

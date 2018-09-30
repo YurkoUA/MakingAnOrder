@@ -8,9 +8,12 @@ namespace MakingAnOrder.Infrastructure.Util
     {
         private readonly IMapper mapper;
 
-        public MappingService(IMapper mapper)
+        public MappingService()
         {
-            this.mapper = mapper;
+            mapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AutoMapperPrimaryProfile());
+            }).CreateMapper();
         }
 
         public TDestination ConvertTo<TDestination>(object source)
@@ -21,6 +24,10 @@ namespace MakingAnOrder.Infrastructure.Util
         public IEnumerable<TDestination> ConvertCollectionTo<TDestination>(object source)
         {
             return mapper.Map<IEnumerable<TDestination>>(source);
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

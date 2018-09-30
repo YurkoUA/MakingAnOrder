@@ -76,6 +76,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,8 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConfigurationHelper.cs" />
-    <Compile Include="AutoMapperPrimaryProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RootContext.cs" />
     <Compile Include="ServiceProviderFactory.cs" />
     <Compile Include="ServiceProviderParametersResolver.cs" />
     <Compile Include="UnityDependencyResolver.cs" />
@@ -96,6 +97,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MakingAnOrder.Business\MakingAnOrder.Business.csproj">
+      <Project>{86B866F5-A07B-45F0-B05C-D878D4FABA91}</Project>
+      <Name>MakingAnOrder.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MakingAnOrder.Data.Entity\MakingAnOrder.Data.Entity.csproj">
+      <Project>{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}</Project>
+      <Name>MakingAnOrder.Data.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MakingAnOrder.Data\MakingAnOrder.Data.csproj">
       <Project>{D58AAD5D-D23D-4E86-BACB-07C2DEC81C86}</Project>
       <Name>MakingAnOrder.Data</Name>
@@ -103,6 +112,10 @@
     <ProjectReference Include="..\MakingAnOrder.Infrastructure\MakingAnOrder.Infrastructure.csproj">
       <Project>{45686486-445D-4FFC-B246-D459336D7EBA}</Project>
       <Name>MakingAnOrder.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MakingAnOrder.ViewModel\MakingAnOrder.ViewModel.csproj">
+      <Project>{576595C2-C9C0-46C6-A2A8-4A320C3C2118}</Project>
+      <Name>MakingAnOrder.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

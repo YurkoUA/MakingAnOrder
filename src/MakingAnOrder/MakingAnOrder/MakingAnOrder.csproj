@@ -148,6 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -210,6 +211,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MakingAnOrder.Bootstrap\MakingAnOrder.Bootstrap.csproj">
+      <Project>{46664508-984D-4E05-AB8B-3F2875FC34F5}</Project>
+      <Name>MakingAnOrder.Bootstrap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MakingAnOrder.Infrastructure\MakingAnOrder.Infrastructure.csproj">
+      <Project>{45686486-445D-4FFC-B246-D459336D7EBA}</Project>
+      <Name>MakingAnOrder.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MakingAnOrder.ViewModel\MakingAnOrder.ViewModel.csproj">
+      <Project>{576595C2-C9C0-46C6-A2A8-4A320C3C2118}</Project>
+      <Name>MakingAnOrder.ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

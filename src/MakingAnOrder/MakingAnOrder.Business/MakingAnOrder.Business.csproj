@@ -41,6 +41,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceBase.cs" />
+    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\ProductService.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MakingAnOrder.Data.Entity\MakingAnOrder.Data.Entity.csproj">
+      <Project>{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}</Project>
+      <Name>MakingAnOrder.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MakingAnOrder.Infrastructure\MakingAnOrder.Infrastructure.csproj">
+      <Project>{45686486-445D-4FFC-B246-D459336D7EBA}</Project>
+      <Name>MakingAnOrder.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MakingAnOrder.ViewModel\MakingAnOrder.ViewModel.csproj">
+      <Project>{576595C2-C9C0-46C6-A2A8-4A320C3C2118}</Project>
+      <Name>MakingAnOrder.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

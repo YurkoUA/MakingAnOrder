@@ -157,5 +157,9 @@ namespace MakingAnOrder.Data.Repositories
         {
             return dbContext.PerformDbRequest(db => db.Query(query, map, splitOn: splitOn, param: paramModel));
         }
+
+        public void Dispose()
+        {
+        }
     }
 }
