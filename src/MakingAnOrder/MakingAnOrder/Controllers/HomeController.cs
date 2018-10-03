@@ -16,22 +16,8 @@ namespace MakingAnOrder.Controllers
             using (var productService = Factory.GetService<IProductService>())
             {
                 var products = productService.GetProducts();
-                return View();
+                return View(productService.GetProducts());
             }
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }
