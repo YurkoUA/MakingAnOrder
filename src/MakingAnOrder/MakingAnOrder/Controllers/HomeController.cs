@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MakingAnOrder.Infrastructure.Helpers;
 using MakingAnOrder.Infrastructure.Interfaces;
 using MakingAnOrder.Infrastructure.Services;
 
@@ -16,7 +17,7 @@ namespace MakingAnOrder.Controllers
             using (var productService = Factory.GetService<IProductService>())
             {
                 var products = productService.GetProducts();
-                return View(productService.GetProducts());
+                return View(model: JsonHelper.SerializeObject(products));
             }
         }
     }
