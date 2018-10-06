@@ -17,7 +17,7 @@ namespace MakingAnOrder.Controllers
             using (var productService = Factory.GetService<IProductService>())
             {
                 var products = productService.GetProducts();
-                return View(model: JsonHelper.SerializeObject(products));
+                return ViewWithJson("Index", products);
             }
         }
     }

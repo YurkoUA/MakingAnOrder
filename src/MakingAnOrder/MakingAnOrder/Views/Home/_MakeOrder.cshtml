@@ -1,0 +1,36 @@
+﻿<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <h3 class="modal-title">Make Order</h3>
+    <hr />
+
+    <div class="panel panel-info" data-bind="visible: MainPage.viewModel.orderProductsList().length > 0">
+        <div class="panel-heading">Make Order</div>
+
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Total Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody data-bind="foreach: MainPage.viewModel.orderProductsList">
+                    <tr>
+                        <td data-bind="text: Name"></td>
+                        <td data-bind="text: TotalPrice"></td>
+                        <td>
+                            <button class="btn btn-danger">
+                                <span class="glyphicon glyphicon-minus"></span>
+                                Cancel
+                            </button>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="alert alert-danger" role="alert" data-bind="visible: MainPage.viewModel.orderProductsList().length == 0">
+        You have not bought anything.
+    </div>
+</div>

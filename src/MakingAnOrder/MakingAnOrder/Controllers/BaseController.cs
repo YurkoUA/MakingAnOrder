@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using MakingAnOrder.Bootstrap.Context;
 using MakingAnOrder.Extensions;
 using MakingAnOrder.Infrastructure.Interfaces;
+using MakingAnOrder.Infrastructure.Helpers;
 
 namespace MakingAnOrder.Controllers
 {
@@ -73,6 +74,13 @@ namespace MakingAnOrder.Controllers
             Response.StatusCode = (int)statusCode;
             Response.Headers.Add("Content-Type", "application/json");
             Response.Write(JsonConvert.SerializeObject(errors));
+        }
+
+        [NonAction]
+        public ActionResult ViewWithJson(string viewName, object jsonModel, object model = null)
+        {
+            ViewBag.JsonModel = JsonHelper.SerializeObject(jsonModel);
+            return View(viewName, model);
         }
     }
 }

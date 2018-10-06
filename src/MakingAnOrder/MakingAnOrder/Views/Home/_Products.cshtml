@@ -1,0 +1,47 @@
+﻿<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <h3 class="modal-title">Products</h3>
+    <hr />
+
+    <div class="panel panel-info" data-bind="visible: MainPage.viewModel.productsList().length > 0">
+        <div class="panel-heading">Products</div>
+
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Original Price</th>
+                        <th>Discount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody data-bind="foreach: MainPage.viewModel.productsList()">
+                    <tr>
+                        <td data-bind="text: Name"></td>
+                        <td data-bind="text: Price"></td>
+                        <td>
+                            <input type="number" class="form-control" data-bind="textInput: Discount" />
+                        </td>
+                        <td>
+                            <button class="btn" data-bind="css: { 'btn-success': !InOrder(), 'btn-danger': InOrder() }; click: Buy">
+                                <span data-bind="visible: !InOrder()" class="glyphicon glyphicon-plus"></span>
+                                <span data-bind="visible: InOrder()" class="glyphicon glyphicon-minus"></span>
+
+                                <span data-bind="text: InOrder() ? 'Cancel' : 'Buy'"></span> (<i data-bind="text: TotalPrice"></i>)
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel-footer">
+            <button class="btn btn-default">Add product</button>
+        </div>
+    </div>
+
+    <div class="alert alert-danger" role="alert" data-bind="visible: MainPage.viewModel.productsList().length == 0">
+        There are not any products.
+    </div>
+</div>

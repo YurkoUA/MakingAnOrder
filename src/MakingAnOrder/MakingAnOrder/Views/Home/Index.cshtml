@@ -15,50 +15,18 @@
 <hr />
 
 <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <h3 class="modal-title">Products</h3>
-        <hr />
-
-        <div class="panel panel-info">
-            <div class="panel-heading">Products</div>
-
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Original Price</th>
-                            <th>Discount</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-
-                    <tbody data-bind="foreach: productsList">
-                        <tr>
-                            <td><b data-bind="text: Name"></b></td>
-                            <td data-bind="text: Price"></td>
-                            <td><input type="number" class="form-control" /></td>
-                            <td><button class="btn btn-success">Buy (<i>total price</i>)</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="panel-footer">
-                <button class="btn btn-default">Add product</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-
-    </div>
+    @Html.Partial("_Products")
+    @Html.Partial("_MakeOrder")
 </div>
-
+    
 @section Scripts {
     <script src="~/Scripts/app/main-page.js"></script>
 
     <script>
-        MainPage.productsList = ko.observableArray(@Html.Raw(Model))
+        var products = @Html.Raw(ViewBag.JsonModel.ToString());
+
+        for (var i in products) {
+            MainPage.viewModel.productsList.push(new MainPage.ProductVM(products[i]));
+        }
     </script>
 }
