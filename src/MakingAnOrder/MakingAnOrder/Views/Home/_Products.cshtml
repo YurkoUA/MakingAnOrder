@@ -30,7 +30,7 @@
                         </td>
 
                         <td>
-                            <button class="btn" data-bind="css: { 'btn-success': !InOrder(), 'btn-danger': InOrder() }, click: Buy">
+                            <button class="btn" data-bind="css: { 'btn-success': !InOrder(), 'btn-danger': InOrder() }, click: MainPage.viewModel.buyProduct">
                                 <span data-bind="visible: !InOrder()" class="glyphicon glyphicon-plus"></span>
                                 <span data-bind="visible: InOrder()" class="glyphicon glyphicon-minus"></span>
 

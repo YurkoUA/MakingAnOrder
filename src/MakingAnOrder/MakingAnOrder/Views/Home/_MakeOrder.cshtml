@@ -20,13 +20,17 @@
                         <td data-bind="text: Name"></td>
                         <td data-bind="text: TotalPrice"></td>
                         <td>
-                            <button class="btn btn-danger">
+                            <button class="btn btn-danger" data-bind="click: MainPage.viewModel.dropProduct">
                                 <span class="glyphicon glyphicon-minus"></span>
-                                Cancel
+                                Drop
                             </button>
                         </td>
                     </tr>
             </table>
+        </div>
+
+        <div class="panel-footer">
+            <button class="btn btn-default" data-bind="click: MainPage.viewModel.purchase">Purchase</button>
         </div>
     </div>
 

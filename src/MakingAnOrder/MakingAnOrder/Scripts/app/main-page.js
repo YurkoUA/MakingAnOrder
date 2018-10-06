@@ -29,7 +29,22 @@
 
     self.viewModel = {
         productsList: ko.observableArray([]),
-        orderProductsList: ko.observableArray([])
+        orderProductsList: ko.observableArray([]),
+
+        buyProduct: function (product) {
+            product.Buy();
+
+            if (product.InOrder()) {
+                self.viewModel.orderProductsList.push(product);
+            }
+        },
+        dropProduct: function (product) {
+            product.Buy();
+            self.viewModel.orderProductsList.splice(self.viewModel.orderProductsList.indexOf(product), 1);
+        },
+        purchase: function () {
+            
+        }
     };
 
     ko.applyBindings(self.viewModel);
