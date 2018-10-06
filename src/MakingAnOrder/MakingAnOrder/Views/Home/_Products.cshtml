@@ -20,11 +20,17 @@
                     <tr>
                         <td data-bind="text: Name"></td>
                         <td data-bind="text: Price"></td>
-                        <td>
+
+                        <td data-bind="visible: !InOrder()">
                             <input type="number" class="form-control" data-bind="textInput: Discount" />
+                            
                         </td>
+                        <td data-bind="visible: InOrder()">
+                            <span data-bind="text: Discount"></span>
+                        </td>
+
                         <td>
-                            <button class="btn" data-bind="css: { 'btn-success': !InOrder(), 'btn-danger': InOrder() }; click: Buy">
+                            <button class="btn" data-bind="css: { 'btn-success': !InOrder(), 'btn-danger': InOrder() }, click: Buy">
                                 <span data-bind="visible: !InOrder()" class="glyphicon glyphicon-plus"></span>
                                 <span data-bind="visible: InOrder()" class="glyphicon glyphicon-minus"></span>
 

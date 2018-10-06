@@ -24,7 +24,6 @@
 
         vm.Buy = function () {
             vm.InOrder(!vm.InOrder());
-            alert('You have bought ' + vm.Name());
         };
     };
 
