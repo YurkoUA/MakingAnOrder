@@ -1,6 +1,4 @@
-﻿@model string
-
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 
@@ -14,13 +12,16 @@
 
 <hr />
 
-<div class="row">
+<div id="main-grid" class="row">
     @Html.Partial("_Products")
     @Html.Partial("_MakeOrder")
 </div>
+
+@Html.Partial("_ProductCreateModal")
     
 @section Scripts {
     <script src="~/Scripts/app/main-page.js"></script>
+    <script src="~/Scripts/app/product-create.js"></script>
 
     <script>
         var products = @Html.Raw(ViewBag.JsonModel.ToString());

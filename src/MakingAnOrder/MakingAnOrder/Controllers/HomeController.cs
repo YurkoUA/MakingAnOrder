@@ -6,11 +6,13 @@ using System.Web.Mvc;
 using MakingAnOrder.Infrastructure.Helpers;
 using MakingAnOrder.Infrastructure.Interfaces;
 using MakingAnOrder.Infrastructure.Services;
+using MakingAnOrder.ViewModel;
 
 namespace MakingAnOrder.Controllers
 {
     public class HomeController : BaseController
     {
+        [HttpGet]
         public ActionResult Index()
         {
             using (var orderService = Factory.GetService<IOrderService>())
@@ -18,6 +20,16 @@ namespace MakingAnOrder.Controllers
             {
                 var products = productService.GetProducts();
                 return ViewWithJson("Index", products);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CreateProduct(ProductVM product)
+        {
+            using (var productService = Factory.GetService<IProductService>())
+            {
+                product.Id = productService.CreateProduct(product);
+                return Json(product);
             }
         }
     }

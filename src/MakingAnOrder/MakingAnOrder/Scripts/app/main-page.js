@@ -15,7 +15,7 @@
         vm.Discount = ko.observable(0);
 
         vm.TotalPrice = ko.computed(function () {
-            if (vm.Discount() == undefined || isNaN(vm.Discount()) || !isFinite(vm.Discount()) || vm.Discount() >= vm.Price() || vm.Discount() < 0) {
+            if (vm.Discount() === undefined || isNaN(vm.Discount()) || !isFinite(vm.Discount()) || vm.Discount() >= vm.Price() || vm.Discount() < 0) {
                 return vm.Price();
             }
 
@@ -36,6 +36,8 @@
 
             if (product.InOrder()) {
                 self.viewModel.orderProductsList.push(product);
+            } else {
+                self.viewModel.orderProductsList.splice(self.viewModel.orderProductsList.indexOf(product), 1);
             }
         },
         dropProduct: function (product) {
@@ -44,8 +46,16 @@
         },
         purchase: function () {
             
+        },
+        addProduct: function () {
+            ProductCreate.onProductAdded = function (product) {
+                self.viewModel.productsList.push(new self.ProductVM(product));
+                ModalService.close('product-create-modal');
+            };
+
+            ModalService.show('product-create-modal');
         }
     };
 
-    ko.applyBindings(self.viewModel);
+    ko.applyBindings(self.viewModel, document.getElementById('main-grid'));
 }).apply(MainPage);

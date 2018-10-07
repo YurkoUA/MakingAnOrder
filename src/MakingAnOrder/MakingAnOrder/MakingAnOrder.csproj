@@ -162,11 +162,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app\main-page.js" />
+    <Content Include="Scripts\app\product-create.js" />
+    <Content Include="Scripts\app\services\ajax-service.js" />
+    <Content Include="Scripts\app\services\modal-service.js" />
+    <Content Include="Scripts\app\services\toastr-service.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -187,6 +192,7 @@
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -202,6 +208,7 @@
     <Content Include="Views\Shared\ErrorPartial.cshtml" />
     <Content Include="Views\Home\_Products.cshtml" />
     <Content Include="Views\Home\_MakeOrder.cshtml" />
+    <Content Include="Views\Home\_ProductCreateModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

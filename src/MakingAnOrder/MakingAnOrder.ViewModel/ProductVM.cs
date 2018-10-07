@@ -1,7 +1,10 @@
-﻿namespace MakingAnOrder.ViewModel
+﻿using System.Web.ModelBinding;
+
+namespace MakingAnOrder.ViewModel
 {
     public class ProductVM
     {
+        [BindNever]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

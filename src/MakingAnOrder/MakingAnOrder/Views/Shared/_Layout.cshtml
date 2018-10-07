@@ -6,6 +6,8 @@
     <title>@ViewBag.Title - Making An Order</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,10 +25,16 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
+
     <script src="~/Scripts/knockout-3.4.2.js"></script>
     <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+
+    <script src="~/Scripts/app/services/toastr-service.js"></script>
+    <script src="~/Scripts/app/services/ajax-service.js"></script>
+    <script src="~/Scripts/app/services/modal-service.js"></script>
 
     @RenderSection("scripts", required: false)
 </body>
