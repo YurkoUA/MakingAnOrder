@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MakingAnOrder.Infrastructure.DTO;
 using MakingAnOrder.Infrastructure.Helpers;
 using MakingAnOrder.Infrastructure.Interfaces;
 using MakingAnOrder.Infrastructure.Services;
@@ -30,6 +31,21 @@ namespace MakingAnOrder.Controllers
             {
                 product.Id = productService.CreateProduct(product);
                 return Json(product);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Purchase(IEnumerable<MakeOrderVM> order)
+        {
+            if (order == null)
+                return new HttpStatusCodeResult(400);
+
+            using (var orderService = Factory.GetService<IOrderService>())
+            using (var mapperService = Factory.GetService<IMappingService>())
+            {
+                var dto = mapperService.ConvertCollectionTo<MakeOrderProductDTO>(order);
+                orderService.MakeOrder(dto);
+                return Ok();
             }
         }
     }

@@ -82,5 +82,11 @@ namespace MakingAnOrder.Controllers
             ViewBag.JsonModel = JsonHelper.SerializeObject(jsonModel);
             return View(viewName, model);
         }
+
+        [NonAction]
+        public ActionResult Ok()
+        {
+            return new HttpStatusCodeResult(200);
+        }
     }
 }

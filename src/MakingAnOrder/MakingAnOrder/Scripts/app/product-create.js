@@ -44,7 +44,7 @@
             if ($("#product-create-form").valid()) {
                 var product = vm.getModel();
 
-                AjaxService.post('/Home/CreateProduct', product, function (data) {
+                AjaxService.post('/Home/CreateProduct', $.param(product), function (data) {
                     toastr.success('The product has been added successfully!');
                     self.onProductAdded(data);
                     vm.reset();

@@ -45,7 +45,8 @@
             self.viewModel.orderProductsList.splice(self.viewModel.orderProductsList.indexOf(product), 1);
         },
         purchase: function () {
-            
+            Purchase.products(self.viewModel.orderProductsList());
+            ModalService.show('purchase-modal');
         },
         addProduct: function () {
             ProductCreate.onProductAdded = function (product) {

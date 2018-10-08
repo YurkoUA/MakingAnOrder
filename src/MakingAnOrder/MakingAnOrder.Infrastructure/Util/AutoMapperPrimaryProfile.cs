@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MakingAnOrder.Data.Entity;
+using MakingAnOrder.Infrastructure.DTO;
 using MakingAnOrder.ViewModel;
 
 namespace MakingAnOrder.Infrastructure.Util
@@ -15,6 +16,8 @@ namespace MakingAnOrder.Infrastructure.Util
             CreateMap<OrderVM, Order>();
 
             CreateMap<ProductOrder, ProductOrderVM>();
+
+            CreateMap<MakeOrderVM, MakeOrderProductDTO>();
         }
     }
 }
