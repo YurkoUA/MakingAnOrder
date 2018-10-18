@@ -88,5 +88,11 @@ namespace MakingAnOrder.Controllers
         {
             return new HttpStatusCodeResult(200);
         }
+
+        [NonAction]
+        public ActionResult Ok(object obj)
+        {
+            return Json(obj);
+        }
     }
 }

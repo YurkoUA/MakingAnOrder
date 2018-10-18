@@ -18,8 +18,9 @@
         $.ajax({
             url: url,
             type: 'POST',
-            data: data,
-            contentType: 'application/x-www-form-urlencoded',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            contentType: 'application/json',
             success: function (data, textStatus, jqXHR) {
                 success(data);
             },

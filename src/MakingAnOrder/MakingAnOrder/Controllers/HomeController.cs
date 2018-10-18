@@ -25,27 +25,27 @@ namespace MakingAnOrder.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateProduct(ProductVM product)
+        public ActionResult CreateProduct(ProductVM model)
         {
             using (var productService = Factory.GetService<IProductService>())
             {
-                product.Id = productService.CreateProduct(product);
-                return Json(product);
+                model.Id = productService.CreateProduct(model);
+                return Json(model);
             }
         }
 
         [HttpPost]
-        public ActionResult Purchase(IEnumerable<MakeOrderVM> order)
+        public ActionResult Purchase(IEnumerable<MakeOrderVM> model)
         {
-            if (order == null)
+            if (model == null)
                 return new HttpStatusCodeResult(400);
 
             using (var orderService = Factory.GetService<IOrderService>())
             using (var mapperService = Factory.GetService<IMappingService>())
             {
-                var dto = mapperService.ConvertCollectionTo<MakeOrderProductDTO>(order);
-                orderService.MakeOrder(dto);
-                return Ok();
+                var dto = mapperService.ConvertCollectionTo<MakeOrderProductDTO>(model);
+                var id = orderService.MakeOrder(dto);
+                return Json(new { Id = id});
             }
         }
     }

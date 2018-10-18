@@ -49,7 +49,7 @@ namespace MakingAnOrder.Data.Repositories
         {
             var param = new DynamicParameters();
             param.Add("@products", products.AsDataTableParam().AsTableValuedParameter("MakeOrderProductType"));
-            param.Add("@orderId", direction: ParameterDirection.Output);
+            param.Add("@orderId", direction: ParameterDirection.Output, dbType: DbType.Int32);
 
             ExecuteSP("USPMakeOrder", param);
             return param.Get<int>("@orderId");
