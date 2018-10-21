@@ -1,0 +1,47 @@
+﻿<div class="modal fade" id="order-history-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Order History</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="panel panel-info" data-bind="visible: OrderHistory.viewModel.orders().length > 0">
+                    <div class="panel-heading">Orders</div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date</th>
+                                    <th>Total Price</th>
+                                    <th>Products Quantity</th>
+                                </tr>
+                            </thead>
+
+                            <tbody data-bind="foreach: OrderHistory.viewModel.orders">
+                                <tr>
+                                    <td data-bind="text: Id"></td>
+                                    <td data-bind="text: Date"></td>
+                                    <td data-bind="text: TotalPrice"></td>
+                                    <td data-bind="text: ProductsQuantity"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="alert alert-danger" role="alert" data-bind="visible: OrderHistory.viewModel.orders().length == 0">
+                    You do not have any orders.
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

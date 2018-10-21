@@ -55,15 +55,12 @@
     <Compile Include="DTO\MakeOrderProductDTO.cs" />
     <Compile Include="DTO\OrderFilterDTO.cs" />
     <Compile Include="Enum\MessageLevel.cs" />
-    <Compile Include="Enum\OrderDirection.cs" />
     <Compile Include="Exceptions\CustomException.cs" />
     <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
-    <Compile Include="Interfaces\IDateRange.cs" />
     <Compile Include="Interfaces\IInternalRequestContext.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Interfaces\IMappingService.cs" />
-    <Compile Include="Interfaces\IPaging.cs" />
     <Compile Include="Interfaces\IRepositoryProvider.cs" />
     <Compile Include="Interfaces\IRequestContext.cs" />
     <Compile Include="Interfaces\IServiceProviderFactory.cs" />
@@ -80,6 +77,10 @@
     <ProjectReference Include="..\MakingAnOrder.Data.Entity\MakingAnOrder.Data.Entity.csproj">
       <Project>{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}</Project>
       <Name>MakingAnOrder.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MakingAnOrder.Infrastructure.Common\MakingAnOrder.Infrastructure.Common.csproj">
+      <Project>{C3F7A3E6-C1FD-4BD4-BFA4-23D616C43AE4}</Project>
+      <Name>MakingAnOrder.Infrastructure.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\MakingAnOrder.ViewModel\MakingAnOrder.ViewModel.csproj">
       <Project>{576595C2-C9C0-46C6-A2A8-4A320C3C2118}</Project>

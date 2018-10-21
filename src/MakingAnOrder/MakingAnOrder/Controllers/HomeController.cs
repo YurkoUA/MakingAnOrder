@@ -38,14 +38,25 @@ namespace MakingAnOrder.Controllers
         public ActionResult Purchase(IEnumerable<MakeOrderVM> model)
         {
             if (model == null)
-                return new HttpStatusCodeResult(400);
+                return BadRequest();
 
             using (var orderService = Factory.GetService<IOrderService>())
-            using (var mapperService = Factory.GetService<IMappingService>())
             {
-                var dto = mapperService.ConvertCollectionTo<MakeOrderProductDTO>(model);
-                var id = orderService.MakeOrder(dto);
+                var id = orderService.MakeOrder(model);
                 return Json(new { Id = id});
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Orders(OrderFilterVM filter)
+        {
+            if (filter == null)
+                return BadRequest();
+
+            using (var orderService = Factory.GetService<IOrderService>())
+            {
+                var orders = orderService.GetOrders(filter, out int totalCount);
+                return Json(orders, JsonRequestBehavior.AllowGet);
             }
         }
     }

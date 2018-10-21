@@ -94,5 +94,11 @@ namespace MakingAnOrder.Controllers
         {
             return Json(obj);
         }
+
+        [NonAction]
+        public ActionResult BadRequest()
+        {
+            return new HttpStatusCodeResult(400);
+        }
     }
 }

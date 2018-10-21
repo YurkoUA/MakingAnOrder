@@ -10,14 +10,14 @@
     <link href="~/Content/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div id="app-navbar" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 @Html.ActionLink("Making An Order", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
 
             <form class="navbar-form navbar-right">
-                <button type="button" class="btn btn-success">Order History</button>
+                <button type="button" class="btn btn-success" data-bind="click: AppNavbar.openOrderHistory">Order History</button>
             </form>
         </div>
     </div>
@@ -35,10 +35,15 @@
     <script src="~/Scripts/knockout-3.4.2.js"></script>
     <script src="~/Scripts/knockout.mapping-latest.js"></script>
     <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+
+    <script src="~/Scripts/polyfills.js"></script>
 
     <script src="~/Scripts/app/services/toastr-service.js"></script>
     <script src="~/Scripts/app/services/ajax-service.js"></script>
     <script src="~/Scripts/app/services/modal-service.js"></script>
+
+    <script src="~/Scripts/app/app-navbar.js"></script>
 
     @RenderSection("scripts", required: false)
 </body>
