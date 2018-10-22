@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[USPGetOrders]
-	@orderDateStart DATE,
-	@orderDateEnd	DATE,
+	@orderDateStart DATE = NULL,
+	@orderDateEnd	DATE = NULL,
 
 	@offset INT = 0,
 	@take	INT = 20,
@@ -28,7 +28,8 @@ AS
 	JOIN [OrderProduct] AS [op] ON op.[OrderId] = o.[Id]
 	JOIN [Product] AS [p] ON p.[Id] = op.[ProductId]
 
-	WHERE o.[Date] BETWEEN @orderDateStart AND @orderDateEnd
+	WHERE (@orderDateStart IS NULL OR o.[Date] >= @orderDateStart)
+			AND (@orderDateEnd IS NULL OR o.[Date] <= @orderDateEnd)
 	GROUP BY	o.[Id], 
 				o.[Date], 
 				op.[OriginalPrice] - op.[Discount], 
