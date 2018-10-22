@@ -167,7 +167,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\app\app-navbar.js" />
     <Content Include="Scripts\app\main-page.js" />
+    <Content Include="Scripts\app\order-history.js" />
     <Content Include="Scripts\app\product-create.js" />
     <Content Include="Scripts\app\purchase.js" />
     <Content Include="Scripts\app\services\ajax-service.js" />
@@ -193,6 +195,11 @@
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\polyfills.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -211,6 +218,7 @@
     <Content Include="Views\Home\_MakeOrder.cshtml" />
     <Content Include="Views\Home\_ProductCreateModal.cshtml" />
     <Content Include="Views\Home\_PurchaseModal.cshtml" />
+    <Content Include="Views\Home\_OrderHistoryModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

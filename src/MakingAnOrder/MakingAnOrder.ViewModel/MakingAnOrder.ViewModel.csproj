@@ -43,10 +43,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MakeOrderVM.cs" />
+    <Compile Include="OrderFilterVM.cs" />
     <Compile Include="OrderVM.cs" />
     <Compile Include="ProductOrderVM.cs" />
     <Compile Include="ProductVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MakingAnOrder.Infrastructure.Common\MakingAnOrder.Infrastructure.Common.csproj">
+      <Project>{C3F7A3E6-C1FD-4BD4-BFA4-23D616C43AE4}</Project>
+      <Name>MakingAnOrder.Infrastructure.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

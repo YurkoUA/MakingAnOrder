@@ -1,4 +1,4 @@
-﻿namespace MakingAnOrder.Infrastructure.Enum
+﻿namespace MakingAnOrder.Infrastructure.Common.Enums
 {
     public enum OrderDirection
     {

@@ -24,7 +24,7 @@ namespace MakingAnOrder.Data.Repositories
             param.Add("@take", orderFilter.Take);
             param.Add("@orderByColumn", orderFilter.Column);
             param.Add("@orderDirection", orderFilter.Direction);
-            param.Add("@totalCount", direction: ParameterDirection.Output);
+            param.Add("@totalCount", direction: ParameterDirection.Output, dbType: DbType.Int32);
 
             var ordersDictionary = new Dictionary<int, Order>();
 

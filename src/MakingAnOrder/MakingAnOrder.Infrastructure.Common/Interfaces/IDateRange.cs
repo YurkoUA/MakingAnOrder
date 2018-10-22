@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MakingAnOrder.Infrastructure.Interfaces
+namespace MakingAnOrder.Infrastructure.Common.Interfaces
 {
     public interface IDateRange
     {

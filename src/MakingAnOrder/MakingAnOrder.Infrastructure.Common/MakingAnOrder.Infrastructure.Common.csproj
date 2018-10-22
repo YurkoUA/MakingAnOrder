@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D58AAD5D-D23D-4E86-BACB-07C2DEC81C86}</ProjectGuid>
+    <ProjectGuid>{C3F7A3E6-C1FD-4BD4-BFA4-23D616C43AE4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MakingAnOrder.Data</RootNamespace>
-    <AssemblyName>MakingAnOrder.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>MakingAnOrder.Infrastructure.Common</RootNamespace>
+    <AssemblyName>MakingAnOrder.Infrastructure.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,15 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
-    </Reference>
-    <Reference Include="Dapper.Contrib, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.Contrib.1.50.5\lib\net451\Dapper.Contrib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,28 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbContext.cs" />
+    <Compile Include="Interfaces\IDateRange.cs" />
+    <Compile Include="Interfaces\IPaging.cs" />
+    <Compile Include="Enums\OrderDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\DapperRepository.cs" />
-    <Compile Include="Repositories\OrderRepository.cs" />
-    <Compile Include="Repositories\ProductRepository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MakingAnOrder.Data.Entity\MakingAnOrder.Data.Entity.csproj">
-      <Project>{A709AEDB-C3FE-4B96-9422-414CFC5AF67B}</Project>
-      <Name>MakingAnOrder.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MakingAnOrder.Infrastructure.Common\MakingAnOrder.Infrastructure.Common.csproj">
-      <Project>{c3f7a3e6-c1fd-4bd4-bfa4-23d616c43ae4}</Project>
-      <Name>MakingAnOrder.Infrastructure.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MakingAnOrder.Infrastructure\MakingAnOrder.Infrastructure.csproj">
-      <Project>{45686486-445D-4FFC-B246-D459336D7EBA}</Project>
-      <Name>MakingAnOrder.Infrastructure</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

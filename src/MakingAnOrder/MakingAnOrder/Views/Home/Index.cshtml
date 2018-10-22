@@ -19,11 +19,13 @@
 
 @Html.Partial("_ProductCreateModal")
 @Html.Partial("_PurchaseModal")
+@Html.Partial("_OrderHistoryModal")
 
 @section Scripts {
     <script src="~/Scripts/app/main-page.js"></script>
     <script src="~/Scripts/app/product-create.js"></script>
     <script src="~/Scripts/app/purchase.js"></script>
+    <script src="~/Scripts/app/order-history.js"></script>
 
     <script>
         var products = @Html.Raw(ViewBag.JsonModel.ToString());

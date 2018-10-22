@@ -2,9 +2,9 @@
 using MakingAnOrder.Infrastructure.Common.Enums;
 using MakingAnOrder.Infrastructure.Common.Interfaces;
 
-namespace MakingAnOrder.Infrastructure.DTO
+namespace MakingAnOrder.ViewModel
 {
-    public class OrderFilterDTO : IPaging, IDateRange
+    public class OrderFilterVM : IPaging, IDateRange
     {
         public int Offset { get; set; } = 0;
         public int Take { get; set; } = 20;

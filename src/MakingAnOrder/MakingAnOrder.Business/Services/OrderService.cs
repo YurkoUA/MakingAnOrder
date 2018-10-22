@@ -13,22 +13,25 @@ namespace MakingAnOrder.Business.Services
         {
         }
 
-        public IEnumerable<OrderVM> GetOrders(OrderFilterDTO orderFilter, out int totalCount)
+        public IEnumerable<OrderVM> GetOrders(OrderFilterVM orderFilter, out int totalCount)
         {
             using (var repo = Factory.GetService<IOrderRepository>())
             using (var mapper = Factory.GetService<IMappingService>())
             {
-                var orders = repo.GetAllOrders(orderFilter, out int _totalCount);
+                var dto = mapper.ConvertTo<OrderFilterDTO>(orderFilter);
+                var orders = repo.GetAllOrders(dto, out int _totalCount);
                 totalCount = _totalCount;
                 return mapper.ConvertCollectionTo<OrderVM>(orders);
             }
         }
 
-        public int MakeOrder(IEnumerable<MakeOrderProductDTO> products)
+        public int MakeOrder(IEnumerable<MakeOrderVM> products)
         {
             using (var repo = Factory.GetService<IOrderRepository>())
+            using (var mapper = Factory.GetService<IMappingService>())
             {
-                return repo.MakeOrder(products);
+                var dto = mapper.ConvertCollectionTo<MakeOrderProductDTO>(products);
+                return repo.MakeOrder(dto);
             }
         }
     }
