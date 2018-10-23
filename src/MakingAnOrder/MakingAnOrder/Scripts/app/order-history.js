@@ -3,13 +3,25 @@
 (function () {
     var self = this;
 
+    function Initialize(data) {
+        $('table#order-history-table').DataTable({
+            data: data,
+            columns: [
+                { data: 'Id' },
+                { data: 'Date' },
+                { data: 'TotalPrice' },
+                { data: 'ProductsQuantity' }
+            ]
+        });
+    }
+
     self.OrderVM = function (order) {
         var vm = this;
 
         vm.Id = ko.observable(order.Id);
-        vm.Date = ko.observable(order.Date);
+        vm.Date = ko.observable(new Date(order.Date).format('DD.MM.YYYY'));
         vm.TotalPrice = ko.observable(order.TotalPrice);
-        vm.ProductQuantity = ko.observable(order.ProductQuantity);
+        vm.ProductsQuantity = ko.observable(order.ProductsQuantity);
         vm.Products = ko.observableArray([]);
 
         if (order.Products && Array.isArray(order.Products)) {
@@ -48,11 +60,15 @@
             self.filter.direction('DESC');
         },
         getOrders: function () {
+            self.viewModel.orders([]);
+
             AjaxService.get('/Home/Orders/?' + $.param(self.viewModel.getFilterAsModel()), function (data) {
                 if (data && Array.isArray(data)) {
                     for (var i in data) {
                         self.viewModel.orders.push(new self.OrderVM(data[i]));
                     }
+
+                    Initialize(self.viewModel.orders());
                 }
             });
         },
@@ -64,7 +80,7 @@
                 endDate: self.filter.endDate().format('YYYY-MM-DD'),
                 column: self.filter.column(),
                 direction: self.filter.direction()
-            }
+            };
         }
     };
 

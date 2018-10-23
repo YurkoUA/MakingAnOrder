@@ -7,30 +7,17 @@
             </div>
 
             <div class="modal-body">
-                <div class="panel panel-info" data-bind="visible: OrderHistory.viewModel.orders().length > 0">
-                    <div class="panel-heading">Orders</div>
-
-                    <div class="table-responsive">
-                        <table class="table table-hover table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Date</th>
-                                    <th>Total Price</th>
-                                    <th>Products Quantity</th>
-                                </tr>
-                            </thead>
-
-                            <tbody data-bind="foreach: OrderHistory.viewModel.orders">
-                                <tr>
-                                    <td data-bind="text: Id"></td>
-                                    <td data-bind="text: Date"></td>
-                                    <td data-bind="text: TotalPrice"></td>
-                                    <td data-bind="text: ProductsQuantity"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="table-responsive">
+                    <table id="order-history-table" class="table table-hover table-bordered display">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Total Price</th>
+                                <th>Products Quantity</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
 
                 <div class="alert alert-danger" role="alert" data-bind="visible: OrderHistory.viewModel.orders().length == 0">

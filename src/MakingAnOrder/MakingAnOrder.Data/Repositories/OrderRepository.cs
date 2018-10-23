@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
 using MakingAnOrder.Data.Entity;
 using MakingAnOrder.Infrastructure.Database;
@@ -39,7 +40,7 @@ namespace MakingAnOrder.Data.Repositories
 
                 orderEntry.Products.Add(product);
                 return orderEntry;
-            }, "Id", param);
+            }, "Id", param).Distinct();
 
             totalCount = param.Get<int>("@totalCount");
             return orders;

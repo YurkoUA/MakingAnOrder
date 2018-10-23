@@ -8,7 +8,7 @@ namespace MakingAnOrder.ViewModel
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public decimal TotalPrice { get; set; }
-        public int ProductQuantity { get; set; }
+        public int ProductsQuantity { get; set; }
 
         public ICollection<ProductOrderVM> Products { get; set; }
     }

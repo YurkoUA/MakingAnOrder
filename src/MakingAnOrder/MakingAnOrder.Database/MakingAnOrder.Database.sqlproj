@@ -61,6 +61,7 @@
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\Stored Procedures" />
     <Folder Include="dbo\User Defined Types" />
+    <Folder Include="dbo\Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Product.sql" />
@@ -70,5 +71,6 @@
     <Build Include="dbo\Stored Procedures\USPProductDelete.sql" />
     <Build Include="dbo\User Defined Types\MakeOrderProductType.sql" />
     <Build Include="dbo\Stored Procedures\USPMakeOrder.sql" />
+    <Build Include="dbo\Views\VW_Orders.sql" />
   </ItemGroup>
 </Project>

@@ -73,7 +73,13 @@ namespace MakingAnOrder.Controllers
         {
             Response.StatusCode = (int)statusCode;
             Response.Headers.Add("Content-Type", "application/json");
-            Response.Write(JsonConvert.SerializeObject(errors));
+            Response.Write(JsonHelper.SerializeObject(errors));
+        }
+
+        [NonAction]
+        public ActionResult JsonResult(object obj)
+        {
+            return Content(JsonHelper.SerializeObject(obj), "application/json");
         }
 
         [NonAction]

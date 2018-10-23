@@ -56,7 +56,7 @@ namespace MakingAnOrder.Controllers
             using (var orderService = Factory.GetService<IOrderService>())
             {
                 var orders = orderService.GetOrders(filter, out int totalCount);
-                return Json(orders, JsonRequestBehavior.AllowGet);
+                return JsonResult(orders);
             }
         }
     }
