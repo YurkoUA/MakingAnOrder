@@ -3,17 +3,17 @@
 (function () {
     var self = this;
 
-    function Initialize(data) {
-        $('table#order-history-table').DataTable({
-            data: data,
-            columns: [
-                { data: 'Id' },
-                { data: 'Date' },
-                { data: 'TotalPrice' },
-                { data: 'ProductsQuantity' }
-            ]
-        });
-    }
+    $('table#order-history-table').DataTable({
+        columns: [
+            { data: 'Id' },
+            { data: 'Date' },
+            { data: 'TotalPrice' },
+            { data: 'ProductsQuantity' }
+        ],
+        processing: true,
+        serverSide: true,
+        ajax: '/Home/Orders'
+    });
 
     self.OrderVM = function (order) {
         var vm = this;
@@ -62,15 +62,15 @@
         getOrders: function () {
             self.viewModel.orders([]);
 
-            AjaxService.get('/Home/Orders/?' + $.param(self.viewModel.getFilterAsModel()), function (data) {
-                if (data && Array.isArray(data)) {
-                    for (var i in data) {
-                        self.viewModel.orders.push(new self.OrderVM(data[i]));
-                    }
+            //AjaxService.get('/Home/Orders/?' + $.param(self.viewModel.getFilterAsModel()), function (data) {
+            //    if (data && Array.isArray(data)) {
+            //        for (var i in data) {
+            //            self.viewModel.orders.push(new self.OrderVM(data[i]));
+            //        }
 
-                    Initialize(self.viewModel.orders());
-                }
-            });
+            //        Initialize(self.viewModel.orders());
+            //    }
+            //});
         },
         getFilterAsModel: function () {
             return {

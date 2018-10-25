@@ -2,6 +2,7 @@
 using MakingAnOrder.Data.Entity;
 using MakingAnOrder.Infrastructure.DTO;
 using MakingAnOrder.ViewModel;
+using MakingAnOrder.ViewModel.DataTable;
 
 namespace MakingAnOrder.Infrastructure.Util
 {
@@ -18,6 +19,10 @@ namespace MakingAnOrder.Infrastructure.Util
             CreateMap<ProductOrder, ProductOrderVM>();
 
             CreateMap<MakeOrderVM, MakeOrderProductDTO>();
+
+            CreateMap<DataTableRequestVM, OrderFilterVM>()
+                .ForMember(dest => dest.Offset, opt => opt.MapFrom(src => src.Start))
+                .ForMember(dest => dest.Take, opt => opt.MapFrom(src => src.Length));
         }
     }
 }

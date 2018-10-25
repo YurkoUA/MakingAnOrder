@@ -42,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTable\DataTableColumnVM.cs" />
+    <Compile Include="DataTable\DataTableOrderVM.cs" />
+    <Compile Include="DataTable\DataTableRequestVM.cs" />
+    <Compile Include="DataTable\DataTableResponseVM.cs" />
+    <Compile Include="DataTable\DataTableSearchVM.cs" />
     <Compile Include="MakeOrderVM.cs" />
     <Compile Include="OrderFilterVM.cs" />
     <Compile Include="OrderVM.cs" />

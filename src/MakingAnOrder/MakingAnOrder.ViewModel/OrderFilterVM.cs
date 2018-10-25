@@ -8,10 +8,10 @@ namespace MakingAnOrder.ViewModel
     {
         public int Offset { get; set; } = 0;
         public int Take { get; set; } = 20;
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.UtcNow.AddYears(-1);
+        public DateTime EndDate { get; set; } = DateTime.UtcNow.AddYears(1);
 
-        public string Column { get; set; }
-        public OrderDirection Direction { get; set; } = OrderDirection.ASC;
+        public string Column { get; set; } = "Id";
+        public OrderDirection Direction { get; set; } = OrderDirection.DESC;
     }
 }

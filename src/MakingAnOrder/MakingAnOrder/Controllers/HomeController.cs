@@ -8,6 +8,7 @@ using MakingAnOrder.Infrastructure.Helpers;
 using MakingAnOrder.Infrastructure.Interfaces;
 using MakingAnOrder.Infrastructure.Services;
 using MakingAnOrder.ViewModel;
+using MakingAnOrder.ViewModel.DataTable;
 
 namespace MakingAnOrder.Controllers
 {
@@ -48,15 +49,28 @@ namespace MakingAnOrder.Controllers
         }
 
         [HttpGet]
-        public ActionResult Orders(OrderFilterVM filter)
+        public ActionResult Orders(DataTableRequestVM dataTable)
         {
-            if (filter == null)
+            if (dataTable == null)
                 return BadRequest();
+
+            OrderFilterVM filter = new OrderFilterVM();
+
+            using (var mapper = Factory.GetService<IMappingService>())
+            {
+                filter = mapper.ConvertTo<OrderFilterVM>(dataTable);
+            }
 
             using (var orderService = Factory.GetService<IOrderService>())
             {
                 var orders = orderService.GetOrders(filter, out int totalCount);
-                return JsonResult(orders);
+                var response = new DataTableResponseVM<OrderVM>
+                {
+                    Data = orders,
+                    RecordsTotal = totalCount,
+                    Draw = dataTable.Draw + 1
+                };
+                return JsonResult(response);
             }
         }
     }
