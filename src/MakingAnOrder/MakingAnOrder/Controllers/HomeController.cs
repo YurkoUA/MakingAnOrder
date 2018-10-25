@@ -64,11 +64,12 @@ namespace MakingAnOrder.Controllers
             using (var orderService = Factory.GetService<IOrderService>())
             {
                 var orders = orderService.GetOrders(filter, out int totalCount);
-                var response = new DataTableResponseVM<OrderVM>
+                var response = new DataTableResponseVM<List<string>>
                 {
-                    Data = orders,
+                    Data = orders.Select(o => new List<string> { o.Id.ToString(), o.Date.ToString(), o.TotalPrice.ToString(), o.ProductsQuantity.ToString() }),
                     RecordsTotal = totalCount,
-                    Draw = dataTable.Draw + 1
+                    Draw = dataTable.Draw + 1,
+                    RecordsFiltered = totalCount
                 };
                 return JsonResult(response);
             }

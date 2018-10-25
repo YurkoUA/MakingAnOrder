@@ -4,12 +4,6 @@
     var self = this;
 
     $('table#order-history-table').DataTable({
-        columns: [
-            { data: 'Id' },
-            { data: 'Date' },
-            { data: 'TotalPrice' },
-            { data: 'ProductsQuantity' }
-        ],
         processing: true,
         serverSide: true,
         ajax: '/Home/Orders'
@@ -61,16 +55,6 @@
         },
         getOrders: function () {
             self.viewModel.orders([]);
-
-            //AjaxService.get('/Home/Orders/?' + $.param(self.viewModel.getFilterAsModel()), function (data) {
-            //    if (data && Array.isArray(data)) {
-            //        for (var i in data) {
-            //            self.viewModel.orders.push(new self.OrderVM(data[i]));
-            //        }
-
-            //        Initialize(self.viewModel.orders());
-            //    }
-            //});
         },
         getFilterAsModel: function () {
             return {

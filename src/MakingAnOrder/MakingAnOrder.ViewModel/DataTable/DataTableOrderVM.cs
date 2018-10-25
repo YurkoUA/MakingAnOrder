@@ -1,4 +1,5 @@
 ﻿using MakingAnOrder.Infrastructure.Common.Enums;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,10 @@ namespace MakingAnOrder.ViewModel.DataTable
 {
     public class DataTableOrderVM
     {
+        [JsonProperty("column")]
         public int Column { get; set; }
-        public OrderDirection Dir { get; set; }
+
+        [JsonProperty("dir")]
+        public OrderDirection Direction { get; set; }
     }
 }

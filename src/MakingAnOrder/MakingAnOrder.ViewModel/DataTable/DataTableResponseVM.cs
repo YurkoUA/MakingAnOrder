@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,16 @@ namespace MakingAnOrder.ViewModel.DataTable
 {
     public class DataTableResponseVM<TData> where TData : class
     {
+        [JsonProperty("data")]
         public IEnumerable<TData> Data { get; set; } = new List<TData>();
+
+        [JsonProperty("draw")]
         public int Draw { get; set; }
+
+        [JsonProperty("recordsTotal")]
         public int RecordsTotal { get; set; }
-        public int RecordsFiltered => Data.Count();
+
+        [JsonProperty("recordsFiltered")]
+        public int RecordsFiltered { get; set; }
     }
 }

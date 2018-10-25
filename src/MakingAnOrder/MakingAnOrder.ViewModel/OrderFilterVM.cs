@@ -12,6 +12,6 @@ namespace MakingAnOrder.ViewModel
         public DateTime EndDate { get; set; } = DateTime.UtcNow.AddYears(1);
 
         public string Column { get; set; } = "Id";
-        public OrderDirection Direction { get; set; } = OrderDirection.DESC;
+        public OrderDirection Direction { get; set; } = OrderDirection.ASC;
     }
 }
