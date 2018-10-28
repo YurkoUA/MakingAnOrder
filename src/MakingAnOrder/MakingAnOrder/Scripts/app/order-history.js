@@ -4,6 +4,39 @@
     var self = this;
     var table = null;
 
+    function format(d) {
+        var table = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+
+        for (var i in d.Products) {
+            table += '<tr>';
+
+            table += '<td><b>Name: </b>' + d.Products[i].Name + '</td>';
+            table += '<td><b>Original Price: </b>' + d.Products[i].OriginalPrice + '</td>';
+            table += '<td><b>Discount: </b>' + d.Products[i].Discount + '</td>';
+            table += '<td><b>Quantity: </b>' + d.Products[i].Quantity + '</td>';
+
+            table += '</tr>';
+        }
+
+        return table + '</table>';
+    }
+
+    $('table#order-history-table').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
+    });
+
     self.initialize = function () {
         table = $('table#order-history-table').DataTable({
             processing: true,
@@ -17,6 +50,12 @@
                 }
             },
             columns: [
+                {
+                    "className": 'details-control',
+                    "orderable": false,
+                    "data": null,
+                    "defaultContent": ''
+                },
                 { data: 'Id', name: 'Id' },
                 { data: 'Date', name: 'Date', format: 'DD.MM.YYYY' },
                 { data: 'TotalPrice', name: 'TotalPrice' },
