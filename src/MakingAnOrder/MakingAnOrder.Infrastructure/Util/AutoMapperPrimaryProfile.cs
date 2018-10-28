@@ -1,5 +1,7 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 using MakingAnOrder.Data.Entity;
+using MakingAnOrder.Infrastructure.Common.Enums;
 using MakingAnOrder.Infrastructure.DTO;
 using MakingAnOrder.ViewModel;
 using MakingAnOrder.ViewModel.DataTable;
@@ -22,7 +24,11 @@ namespace MakingAnOrder.Infrastructure.Util
 
             CreateMap<DataTableRequestVM, OrderFilterVM>()
                 .ForMember(dest => dest.Offset, opt => opt.MapFrom(src => src.Start))
-                .ForMember(dest => dest.Take, opt => opt.MapFrom(src => src.Length));
+                .ForMember(dest => dest.Take, opt => opt.MapFrom(src => src.Length))
+                .ForMember(dest => dest.Column, opt => opt.Condition(src => src.Columns?.Any() == true))
+                .ForMember(dest => dest.Direction, opt => opt.Condition(src => src.Order?.Any() == true))
+                .ForMember(dest => dest.Column, opt => opt.MapFrom(src => src.Columns.ToList()[src.Order.First().Column].Name))
+                .ForMember(dest => dest.Direction, opt => opt.MapFrom(src => src.Order.First().Dir));
         }
     }
 }

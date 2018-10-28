@@ -6,10 +6,10 @@
     self.openOrderHistory = function () {
         var modalId = 'order-history-modal';
         ModalService.show(modalId);
-        OrderHistory.viewModel.getOrders();
+        //OrderHistory.initialize();
 
         ModalService.onClosed(modalId, function () {
-            OrderHistory.viewModel.resetFilter();
+            OrderHistory.clear();
         });
     };
 

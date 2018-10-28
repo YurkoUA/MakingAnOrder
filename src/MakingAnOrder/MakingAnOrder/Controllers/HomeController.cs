@@ -48,7 +48,7 @@ namespace MakingAnOrder.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Orders(DataTableRequestVM dataTable)
         {
             if (dataTable == null)
@@ -64,9 +64,9 @@ namespace MakingAnOrder.Controllers
             using (var orderService = Factory.GetService<IOrderService>())
             {
                 var orders = orderService.GetOrders(filter, out int totalCount);
-                var response = new DataTableResponseVM<List<string>>
+                var response = new DataTableResponseVM<OrderVM>
                 {
-                    Data = orders.Select(o => new List<string> { o.Id.ToString(), o.Date.ToString(), o.TotalPrice.ToString(), o.ProductsQuantity.ToString() }),
+                    Data = orders,
                     RecordsTotal = totalCount,
                     Draw = dataTable.Draw + 1,
                     RecordsFiltered = totalCount

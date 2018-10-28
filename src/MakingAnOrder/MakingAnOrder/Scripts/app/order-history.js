@@ -2,13 +2,35 @@
 
 (function () {
     var self = this;
+    var table = null;
 
-    $('table#order-history-table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '/Home/Orders'
-    });
+    self.initialize = function () {
+        table = $('table#order-history-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '/Home/Orders',
+                method: 'POST',
+                contentType: 'application/json',
+                data: function (data) {
+                    return JSON.stringify(data);
+                }
+            },
+            columns: [
+                { data: 'Id', name: 'Id' },
+                { data: 'Date', name: 'Date', format: 'DD.MM.YYYY' },
+                { data: 'TotalPrice', name: 'TotalPrice' },
+                { data: 'ProductsQuantity', name: 'ProductsQuantity' }
+            ]
+        });
+    };
 
+    self.initialize();
+
+    self.reset = function () {
+        //table.fnDestroy();
+    };
+    
     self.OrderVM = function (order) {
         var vm = this;
 

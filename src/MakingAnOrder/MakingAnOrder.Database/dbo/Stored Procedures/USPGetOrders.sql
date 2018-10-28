@@ -10,33 +10,23 @@
 
 	@totalCount INT OUTPUT
 AS
-	SELECT	[o].[Id],
-			[o].[Date],
-			[o].[TotalPrice],
-			[o].[ProductsQuantity],
-			[p].[Id],
-			[p].[Name],
-			[p].[Description],
-			[op].[OriginalPrice],
-			[op].[Discount],
-			[op].[Quantity]
-	FROM [VW_Orders] AS [o]
-	JOIN [OrderProduct] AS [op] ON [op].OrderId = [o].[Id]
-	JOIN [Product] AS [p] ON [p].[Id] = [op].[ProductId]
+	DECLARE @order TABLE (
+		[Id] INT,
+		[Date] DATETIME,
+		[TotalPrice] MONEY,
+		[ProductsQuantity] INT
+	);
 
+	INSERT INTO @order
+	SELECT	*
+	FROM [VW_Orders] AS [o]
 	WHERE (@orderDateStart IS NULL OR o.[Date] >= @orderDateStart)
 			AND (@orderDateEnd IS NULL OR o.[Date] <= @orderDateEnd)
 
 	GROUP BY	[o].[Id],
 				[o].[Date],
 				[o].[TotalPrice],
-				[o].[ProductsQuantity],
-				[p].[Id],
-				[p].[Name],
-				[p].[Description],
-				[op].[OriginalPrice],
-				[op].[Discount],
-				[op].[Quantity]
+				[o].[ProductsQuantity]
 
 	ORDER BY
 		CASE WHEN @orderByColumn = 'Id'					AND @orderDirection = 1 THEN [o].[Id] END ASC,
@@ -50,6 +40,20 @@ AS
 		CASE WHEN @orderByColumn = 'ProductsQuantity'	AND @orderDirection = 0 THEN SUM([o].[ProductsQuantity]) END DESC
 
 	OFFSET @offset ROWS FETCH NEXT @take ROWS ONLY
+
+	SELECT	[o].[Id],
+			[o].[Date],
+			[o].[TotalPrice],
+			[o].[ProductsQuantity],
+			[p].[Id],
+			[p].[Name],
+			[p].[Description],
+			[op].[OriginalPrice],
+			[op].[Discount],
+			[op].[Quantity]
+	FROM @order AS [o]
+	JOIN [OrderProduct] AS [op] ON [op].OrderId = [o].[Id]
+	JOIN [Product] AS [p] ON [p].[Id] = [op].[ProductId]
 
 
 	SELECT @totalCount = COUNT(*)
