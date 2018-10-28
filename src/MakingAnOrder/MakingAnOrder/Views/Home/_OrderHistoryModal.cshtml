@@ -7,6 +7,32 @@
             </div>
 
             <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">Start Date:</label>
+                            <div id="start-date-picker" class="input-group date">
+                                <input type='text' class="form-control" data-bind="textInput: filter.startDate" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">End Date:</label>
+                            <div id="end-date-picker" class="input-group date">
+                                <input type='text' class="form-control" data-bind="textInput: filter.endDate" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
                 <div class="table-responsive">
                     <table id="order-history-table" class="table table-hover table-bordered display">
                         <thead>

@@ -49,7 +49,7 @@ namespace MakingAnOrder.Controllers
         }
 
         [HttpPost]
-        public ActionResult Orders(DataTableRequestVM dataTable)
+        public ActionResult Orders(OrderDataTableFilterVM dataTable)
         {
             if (dataTable == null)
                 return BadRequest();

@@ -26,12 +26,10 @@
         var row = table.row(tr);
 
         if (row.child.isShown()) {
-            // This row is already open - close it
             row.child.hide();
             tr.removeClass('shown');
         }
         else {
-            // Open this row
             row.child(format(row.data())).show();
             tr.addClass('shown');
         }
@@ -46,6 +44,10 @@
                 method: 'POST',
                 contentType: 'application/json',
                 data: function (data) {
+                    if (self.viewModel) {
+                        data.startDate = self.viewModel.filter.startDate();
+                        data.endDate = self.viewModel.filter.endDate();
+                    }
                     return JSON.stringify(data);
                 }
             },
@@ -62,6 +64,9 @@
                 { data: 'ProductsQuantity', name: 'ProductsQuantity' }
             ]
         });
+
+        $('#start-date-picker').datepicker({});
+        $('#end-date-picker').datepicker({});
     };
 
     self.initialize();
@@ -128,6 +133,14 @@
             };
         }
     };
+
+    self.viewModel.filter.startDate.subscribe(function (v) {
+        $('table#order-history-table').trigger('draw');
+    });
+
+    self.viewModel.filter.endDate.subscribe(function (v) {
+        $('table#order-history-table').trigger('draw');
+    });
 
     ko.applyBindings(self.viewModel, document.getElementById('order-history-modal'));
 }).apply(OrderHistory);

@@ -328,3 +328,7 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+src/MakingAnOrder/MakingAnOrder/Contents/bootstrap-datepicker*
+src/MakingAnOrder/MakingAnOrder/Scripts/locales/bootstrap-datepicker*
+src/MakingAnOrder/MakingAnOrder/Scripts/bootstrap-datepicker.min.js
+src/MakingAnOrder/MakingAnOrder/Scripts/bootstrap-datepicker.js

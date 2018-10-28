@@ -51,6 +51,7 @@
     <Compile Include="DataTable\DataTableResponseVM.cs" />
     <Compile Include="DataTable\DataTableSearchVM.cs" />
     <Compile Include="MakeOrderVM.cs" />
+    <Compile Include="OrderDataTableFilterVM.cs" />
     <Compile Include="OrderFilterVM.cs" />
     <Compile Include="OrderVM.cs" />
     <Compile Include="ProductOrderVM.cs" />
