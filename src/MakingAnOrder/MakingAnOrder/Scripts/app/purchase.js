@@ -3,6 +3,10 @@
 (function () {
     var self = this;
 
+    self.initialize = function () {
+        ko.applyBindings(self, document.getElementById('purchase-modal'));
+    }
+
     self.products = ko.observableArray([]);
 
     self.totalSum = ko.computed(function () {
@@ -30,6 +34,4 @@
             }
         });
     };
-
-    ko.applyBindings(self, document.getElementById('purchase-modal'));
 }).apply(Purchase);

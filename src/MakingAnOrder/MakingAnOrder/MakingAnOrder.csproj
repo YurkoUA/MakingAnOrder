@@ -176,6 +176,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app\app-navbar.js" />
+    <Content Include="Scripts\app\constants.js" />
     <Content Include="Scripts\app\main-page.js" />
     <Content Include="Scripts\app\order-history.js" />
     <Content Include="Scripts\app\product-create.js" />

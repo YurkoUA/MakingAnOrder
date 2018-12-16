@@ -70,7 +70,7 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\IProductService.cs" />
-    <Compile Include="Util\AutoMapperPrimaryProfile.cs" />
+    <Compile Include="Util\AutoMapperProfile.cs" />
     <Compile Include="Util\MappingService.cs" />
   </ItemGroup>
   <ItemGroup>

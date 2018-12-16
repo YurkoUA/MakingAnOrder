@@ -3,6 +3,10 @@
 (function MainPage() {
     var self = this;
 
+    self.initialize = function () {
+        ko.applyBindings(self.viewModel, document.getElementById('main-grid'));
+    }
+
     self.ProductVM = function (product) {
         var vm = this;
 
@@ -52,11 +56,10 @@
             ProductCreate.onProductAdded = function (product) {
                 self.viewModel.productsList.push(new self.ProductVM(product));
                 ModalService.close('product-create-modal');
+                ko.cleanNode(document.getElementById('product-create-modal'));
             };
 
             ModalService.show('product-create-modal');
         }
     };
-
-    ko.applyBindings(self.viewModel, document.getElementById('main-grid'));
 }).apply(MainPage);

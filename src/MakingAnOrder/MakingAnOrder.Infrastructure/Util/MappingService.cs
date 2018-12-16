@@ -12,7 +12,7 @@ namespace MakingAnOrder.Infrastructure.Util
         {
             mapper = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile(new AutoMapperPrimaryProfile());
+                cfg.AddProfile(new AutoMapperProfile());
             }).CreateMapper();
         }
 

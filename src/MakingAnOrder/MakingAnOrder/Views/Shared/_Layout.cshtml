@@ -12,6 +12,21 @@
     <link href="~/Contents/bootstrap-datepicker.min.css" rel="stylesheet" />
 </head>
 <body>
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap", "~/bundles/bootstrap-plugins")
+
+
+    <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/libraries")
+
+    @Scripts.Render("~/bundles/polyfills")
+
+    @Scripts.Render("~/bundles/app-services", "~/bundles/app-general")
+
+    @RenderSection("scripts", required: false)
+
     <div id="app-navbar" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -23,6 +38,11 @@
             </form>
         </div>
     </div>
+
+    <script>
+        AppNavbar.initialize();
+    </script>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -30,25 +50,5 @@
             <p>&copy; @DateTime.Now.Year - Making An Order</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
-    <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-
-    <script src="~/Scripts/knockout-3.4.2.js"></script>
-    <script src="~/Scripts/knockout.mapping-latest.js"></script>
-    <script src="~/Scripts/toastr.min.js"></script>
-    <script src="~/Scripts/moment.min.js"></script>
-
-    <script src="~/Scripts/polyfills.js"></script>
-
-    <script src="~/Scripts/app/services/toastr-service.js"></script>
-    <script src="~/Scripts/app/services/ajax-service.js"></script>
-    <script src="~/Scripts/app/services/modal-service.js"></script>
-
-    <script src="~/Scripts/app/app-navbar.js"></script>
-
-    @RenderSection("scripts", required: false)
 </body>
 </html>

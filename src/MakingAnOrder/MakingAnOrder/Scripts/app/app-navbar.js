@@ -3,15 +3,17 @@
 (function () {
     var self = this;
 
+    self.initialize = function () {
+        ko.applyBindings(self, document.getElementById('app-navbar'));
+    }
+
     self.openOrderHistory = function () {
         var modalId = 'order-history-modal';
         ModalService.show(modalId);
-        //OrderHistory.initialize();
+        OrderHistory.initialize();
 
         ModalService.onClosed(modalId, function () {
-            OrderHistory.clear();
+            OrderHistory.reset();
         });
     };
-
-    ko.applyBindings(self, document.getElementById('app-navbar'));
 }).apply(AppNavbar);

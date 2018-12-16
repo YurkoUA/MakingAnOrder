@@ -12,18 +12,19 @@
                         <div class="form-group">
                             <label class="control-label">Start Date:</label>
                             <div id="start-date-picker" class="input-group date">
-                                <input type='text' class="form-control" data-bind="textInput: filter.startDate" />
+                                <input type='text' class="form-control" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
                         <div class="form-group">
                             <label class="control-label">End Date:</label>
                             <div id="end-date-picker" class="input-group date">
-                                <input type='text' class="form-control" data-bind="textInput: filter.endDate" />
+                                <input type='text' class="form-control" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
@@ -31,7 +32,12 @@
                         </div>
                     </div>
                 </div>
-
+                <div>
+                    <button type="button" class="btn btn-primary btn-group-justified" data-bind="click: runTable()">
+                        Apply filters
+                    </button>
+                </div>
+                <br />
                 
                 <div class="table-responsive">
                     <table id="order-history-table" class="table table-hover table-bordered display">
@@ -54,4 +60,8 @@
         </div>
     </div>
 </div>
+
+<script>
+    OrderHistory.orderHistoryUrl = '@Url.Action("Orders", "Home")';
+</script>
 

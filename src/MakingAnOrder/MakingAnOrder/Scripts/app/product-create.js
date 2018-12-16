@@ -3,6 +3,10 @@
 (function () {
     var self = this;
 
+    self.initialize = function () {
+        ko.applyBindings(new self.viewModel(), document.getElementById('product-create-modal'));
+    }
+
     self.onProductAdded;
 
     self.viewModel = function () {
@@ -67,6 +71,4 @@
             vm.Price(undefined);
         };
     };
-
-    ko.applyBindings(new self.viewModel(), document.getElementById('product-create-modal'));
 }).apply(ProductCreate);

@@ -15,6 +15,9 @@
 <div id="main-grid" class="row">
     @Html.Partial("_Products")
     @Html.Partial("_MakeOrder")
+    <script>
+        MainPage.initialize();
+    </script>
 </div>
 
 @Html.Partial("_ProductCreateModal")
@@ -22,10 +25,7 @@
 @Html.Partial("_OrderHistoryModal")
 
 @section Scripts {
-    <script src="~/Scripts/app/main-page.js"></script>
-    <script src="~/Scripts/app/product-create.js"></script>
-    <script src="~/Scripts/app/purchase.js"></script>
-    <script src="~/Scripts/app/order-history.js"></script>
+    @Scripts.Render("~/bundles/app-pages")
 
     <script>
         var products = @Html.Raw(ViewBag.JsonModel.ToString());
