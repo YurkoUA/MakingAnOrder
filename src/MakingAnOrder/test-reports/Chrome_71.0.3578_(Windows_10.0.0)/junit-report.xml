@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome 71.0.3578 (Windows 10.0.0)" package="" timestamp="2018-12-23T16:00:21" id="0" hostname="Yurko" tests="8" errors="0" failures="0" time="0.01">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"/>
+  </properties>
+  <testcase name="JS Tests - Main Page calculateProductTotalPrice - returns Price if Discount less than 0" time="0.002" classname="Chrome_71_0_3578_(Windows_10_0_0).JS Tests - Main Page"/>
+  <testcase name="JS Tests - Main Page calculateProductTotalPrice - returns Price if Discount the same" time="0.001" classname="Chrome_71_0_3578_(Windows_10_0_0).JS Tests - Main Page"/>
+  <testcase name="JS Tests - Main Page calculateProductTotalPrice - returns Price if Discount is greater" time="0.001" classname="Chrome_71_0_3578_(Windows_10_0_0).JS Tests - Main Page"/>
+  <testcase name="JS Tests - Main Page calculateProductTotalPrice - returns TotalPrice if Discount is less than Price and greater than 0" time="0" classname="Chrome_71_0_3578_(Windows_10_0_0).JS Tests - Main Page"/>
+  <testcase name="JS Tests - Main Page calculateProductTotalPrice - returns 0 if Price is undefined" time="0.001" classname="Chrome_71_0_3578_(Windows_10_0_0).JS Tests - Main Page"/>
+  <testcase name="JS Tests - Main Page calculateProductTotalPrice - returns Price if Discount is undefined" time="0.001" classname="Chrome_71_0_3578_(Windows_10_0_0).JS Tests - Main Page"/>
+  <testcase name="JS Tests - Main Page buyProduct - product goes to orderProductsList, InOrder becomes true" time="0.004" classname="Chrome_71_0_3578_(Windows_10_0_0).JS Tests - Main Page"/>
+  <testcase name="JS Tests - Main Page dropProduct - product is removed from orderProductsList, InOrder becomes false" time="0" classname="Chrome_71_0_3578_(Windows_10_0_0).JS Tests - Main Page"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

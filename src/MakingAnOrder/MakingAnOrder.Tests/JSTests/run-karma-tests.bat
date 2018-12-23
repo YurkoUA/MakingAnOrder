@@ -1,0 +1,1 @@
+karma start karma.conf.js --singleRun=false --reporters junit,dots

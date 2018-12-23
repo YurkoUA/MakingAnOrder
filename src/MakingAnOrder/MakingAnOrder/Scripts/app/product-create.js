@@ -2,9 +2,14 @@
 
 (function () {
     var self = this;
+    var modalId = 'product-create-modal';
 
     self.initialize = function () {
-        ko.applyBindings(new self.viewModel(), document.getElementById('product-create-modal'));
+        ko.applyBindings(new self.viewModel(), document.getElementById(modalId));
+
+        ModalService.onClosed(modalId, function () {
+            ko.cleanNode(document.getElementById(modalId));
+        });
     }
 
     self.onProductAdded;

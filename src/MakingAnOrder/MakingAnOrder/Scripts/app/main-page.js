@@ -19,34 +19,41 @@
         vm.Discount = ko.observable(0);
 
         vm.TotalPrice = ko.computed(function () {
-            if (vm.Discount() === undefined || isNaN(vm.Discount()) || !isFinite(vm.Discount()) || vm.Discount() >= vm.Price() || vm.Discount() < 0) {
-                return vm.Price();
-            }
-
-            return vm.Price() - vm.Discount();
+            return self.calculateProductTotalPrice(vm.Price(), vm.Discount());
         });
-
-        vm.Buy = function () {
-            vm.InOrder(!vm.InOrder());
-        };
     };
+
+    self.calculateProductTotalPrice = function (price, discount) {
+        if (isNaN(price) || !isFinite(price)) {
+            return 0;
+        }
+
+        if (isNaN(discount) || !isFinite(discount) || discount < 0 || discount >= price) {
+            return price;
+        }
+
+        return price - discount;
+    }
+
+    self.buyProduct = function (product) {
+        product.InOrder(true);
+        self.viewModel.orderProductsList.push(product);
+    }
+
+    self.dropProduct = function (product) {
+        product.InOrder(false);
+        self.viewModel.orderProductsList.splice(self.viewModel.orderProductsList.indexOf(product), 1);
+    }
 
     self.viewModel = {
         productsList: ko.observableArray([]),
         orderProductsList: ko.observableArray([]),
 
         buyProduct: function (product) {
-            product.Buy();
-
-            if (product.InOrder()) {
-                self.viewModel.orderProductsList.push(product);
-            } else {
-                self.viewModel.orderProductsList.splice(self.viewModel.orderProductsList.indexOf(product), 1);
-            }
+            self.buyProduct(product);
         },
         dropProduct: function (product) {
-            product.Buy();
-            self.viewModel.orderProductsList.splice(self.viewModel.orderProductsList.indexOf(product), 1);
+            self.dropProduct(product);
         },
         purchase: function () {
             Purchase.products(self.viewModel.orderProductsList());
@@ -56,7 +63,6 @@
             ProductCreate.onProductAdded = function (product) {
                 self.viewModel.productsList.push(new self.ProductVM(product));
                 ModalService.close('product-create-modal');
-                ko.cleanNode(document.getElementById('product-create-modal'));
             };
 
             ModalService.show('product-create-modal');
