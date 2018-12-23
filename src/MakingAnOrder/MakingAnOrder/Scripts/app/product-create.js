@@ -3,8 +3,13 @@
 (function () {
     var self = this;
     var modalId = 'product-create-modal';
+    var formSelector = '#product-create-form';
 
-    self.initialize = function () {
+    var submitUrl = '';
+
+    self.initialize = function (url) {
+        submitUrl = url;
+
         ko.applyBindings(new self.viewModel(), document.getElementById(modalId));
 
         ModalService.onClosed(modalId, function () {
@@ -12,7 +17,7 @@
         });
     }
 
-    self.onProductAdded;
+    self.onProductAdded = undefined;
 
     self.viewModel = function () {
         var vm = this;
@@ -27,38 +32,24 @@
         });
 
         vm.createProduct = function () {
-            var rules = {
-                Name: {
-                    required: true,
-                    minlength: 3,
-                    maxlength: 64
-                },
-                Description: {
-                    required: false,
-                    maxlength: 256
-                },
-                Price: {
-                    required: true,
-                    number: true,
-                    range: [1, 149999]
-                }
-            };
+            var rules = self.getValidationRules();
 
-            $("#product-create-form").validate({
+            $(formSelector).validate({
                 rules: rules,
                 errorElement: 'span',
                 errorClass: 'text-danger'
             })
 
-            if ($("#product-create-form").valid()) {
+            if ($(formSelector).valid()) {
                 var product = vm.getModel();
-
-                AjaxService.post('/Home/CreateProduct', product, function (data) {
-                    toastr.success('The product has been added successfully!');
-                    self.onProductAdded(data);
-                    vm.reset();
-                });
+                AjaxService.post(submitUrl, product, vm.createdCallback);
             }
+        };
+
+        vm.createdCallback = function (data) {
+            toastr.success('The product has been added successfully!');
+            self.onProductAdded(data);
+            vm.reset();
         };
 
         vm.getModel = function () {
@@ -74,6 +65,25 @@
             vm.Name(undefined);
             vm.Description(undefined);
             vm.Price(undefined);
+        };
+    };
+
+    self.getValidationRules = function () {
+        return {
+            Name: {
+                required: true,
+                minlength: 3,
+                maxlength: 64
+            },
+            Description: {
+                required: false,
+                maxlength: 256
+            },
+            Price: {
+                required: true,
+                number: true,
+                range: [1, 149999]
+            }
         };
     };
 }).apply(ProductCreate);

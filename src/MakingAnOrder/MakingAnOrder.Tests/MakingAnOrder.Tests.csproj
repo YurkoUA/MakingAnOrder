@@ -58,6 +58,9 @@
   <ItemGroup>
     <Content Include="JSTests\karma.conf.js" />
     <Content Include="JSTests\tests\main-page-test.js" />
+    <Content Include="JSTests\tests\order-history-test.js" />
+    <Content Include="JSTests\tests\product-create-test.js" />
+    <Content Include="JSTests\tests\purchase-test.js" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

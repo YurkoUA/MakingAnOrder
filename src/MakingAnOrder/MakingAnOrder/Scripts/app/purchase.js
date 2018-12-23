@@ -2,9 +2,12 @@
 
 (function () {
     var self = this;
+    var modalId = 'purchase-modal';
+    var submitUrl = '';
 
-    self.initialize = function () {
-        ko.applyBindings(self, document.getElementById('purchase-modal'));
+    self.initialize = function (url) {
+        submitUrl = url;
+        ko.applyBindings(self, document.getElementById(modalId));
     }
 
     self.products = ko.observableArray([]);
@@ -20,9 +23,9 @@
     });
 
     self.purchase = function () {
-        AjaxService.post('/Home/Purchase', self.getModel(), function (data) {
+        AjaxService.post(submitUrl, self.getModel(), function (data) {
             toastr.success('The order has been purchased successfully!');
-            ModalService.close('purchase-modal');
+            ModalService.close(modalId);
         });
     };
 

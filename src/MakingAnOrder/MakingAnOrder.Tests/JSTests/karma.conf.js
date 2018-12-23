@@ -10,6 +10,7 @@
             'MakingAnOrder/Scripts/jquery.validate.min.js',
             'MakingAnOrder/Scripts/jquery.validate.unobtrusive.min.js',
             'MakingAnOrder/Scripts/knockout-3.4.2.js',
+            'MakingAnOrder/Scripts/knockout.mapping-latest.js',
             'MakingAnOrder/Scripts/bootstrap.min.js',
             'MakingAnOrder/Scripts/bootstrap-datepicker.min.js',
 
@@ -20,7 +21,7 @@
             'MakingAnOrder/Scripts/app/product-create.js',
             'MakingAnOrder/Scripts/app/purchase.js',
             'MakingAnOrder/Scripts/app/order-history.js',
-            'MakingAnOrder.Tests/JSTests/tests/*.js'
+            'MakingAnOrder.Tests/JSTests/tests/*-test.js'
         ],
         plugins: [
             'karma-*'

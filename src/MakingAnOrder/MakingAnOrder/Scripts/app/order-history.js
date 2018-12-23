@@ -64,9 +64,6 @@
             self.filter.column('Id');
             self.filter.direction('DESC');
         },
-        getOrders: function () {
-            self.viewModel.orders([]);
-        },
         getFilterAsModel: function () {
             return {
                 offset: self.filter.offset(),
