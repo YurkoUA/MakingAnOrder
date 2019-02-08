@@ -1,8 +1,8 @@
-﻿<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+﻿<div id="make-order" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <h3 class="modal-title">Make Order</h3>
     <hr />
 
-    <div class="panel panel-info" data-bind="visible: MainPage.viewModel.orderProductsList().length > 0">
+    <div class="panel panel-info" data-bind="visible: !makeOrderVM.isEmpty()">
         <div class="panel-heading">Make Order</div>
 
         <div class="table-responsive">
@@ -15,12 +15,12 @@
                     </tr>
                 </thead>
 
-                <tbody data-bind="foreach: MainPage.viewModel.orderProductsList">
+                <tbody data-bind="foreach: makeOrderVM.products">
                     <tr>
                         <td data-bind="text: Name"></td>
                         <td data-bind="text: TotalPrice"></td>
                         <td>
-                            <button class="btn btn-danger" data-bind="click: MainPage.viewModel.dropProduct">
+                            <button class="btn btn-danger" data-bind="click: makeOrderVM.dropProduct">
                                 <span class="glyphicon glyphicon-minus"></span>
                                 Drop
                             </button>
@@ -30,11 +30,16 @@
         </div>
 
         <div class="panel-footer">
-            <button class="btn btn-default" data-bind="click: MainPage.viewModel.purchase">Purchase</button>
+            <button class="btn btn-default" data-bind="click: makeOrderVM.products.purchase">Purchase</button>
         </div>
     </div>
 
-    <div class="alert alert-danger" role="alert" data-bind="visible: MainPage.viewModel.orderProductsList().length == 0">
+    <div class="alert alert-danger" role="alert" data-bind="visible: makeOrderVM.isEmpty()">
         You have not bought anything.
     </div>
 </div>
+
+<script>
+    let makeOrderVM = new MakeOrderVM();
+    makeOrderVM.initialize();
+</script>

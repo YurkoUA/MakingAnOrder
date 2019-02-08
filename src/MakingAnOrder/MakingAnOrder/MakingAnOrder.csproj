@@ -178,8 +178,11 @@
     <Content Include="Scripts\app\app-navbar.js" />
     <Content Include="Scripts\app\constants.js" />
     <Content Include="Scripts\app\main-page.js" />
+    <Content Include="Scripts\app\make-order.vm.js" />
+    <Content Include="Scripts\app\models\product.model.js" />
     <Content Include="Scripts\app\order-history.js" />
     <Content Include="Scripts\app\product-create.js" />
+    <Content Include="Scripts\app\products-list.vm.js" />
     <Content Include="Scripts\app\purchase.js" />
     <Content Include="Scripts\app\services\ajax-service.js" />
     <Content Include="Scripts\app\services\modal-service.js" />

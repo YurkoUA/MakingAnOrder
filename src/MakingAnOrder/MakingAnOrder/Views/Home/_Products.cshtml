@@ -1,8 +1,8 @@
-﻿<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+﻿<div id="products-list" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <h3 class="modal-title">Products</h3>
     <hr />
 
-    <div class="panel panel-info" data-bind="visible: MainPage.viewModel.productsList().length > 0">
+    <div class="panel panel-info" data-bind="visible: !productListVM.isEmpty()">
         <div class="panel-heading">Products</div>
 
         <div class="table-responsive">
@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
 
-                <tbody data-bind="foreach: MainPage.viewModel.productsList()">
+                <tbody data-bind="foreach: productListVM.products()">
                     <tr>
                         <td data-bind="text: Name"></td>
                         <td data-bind="text: Price"></td>
@@ -30,7 +30,7 @@
                         </td>
 
                         <td>
-                            <button class="btn" data-bind="css: { 'btn-success': !InOrder(), 'btn-danger': InOrder() }, click: MainPage.viewModel.handleProduct">
+                            <button class="btn" data-bind="css: { 'btn-success': !InOrder(), 'btn-danger': InOrder() }, click: productListVM.handleProduct">
                                 <span data-bind="visible: !InOrder()" class="glyphicon glyphicon-plus"></span>
                                 <span data-bind="visible: InOrder()" class="glyphicon glyphicon-minus"></span>
 
@@ -47,7 +47,12 @@
         </div>
     </div>
 
-    <div class="alert alert-danger" role="alert" data-bind="visible: MainPage.viewModel.productsList().length == 0">
+    <div class="alert alert-danger" role="alert" data-bind="visible: productListVM.isEmpty()">
         There are not any products.
     </div>
 </div>
+
+<script>
+    let productListVM = new ProductsListVM();
+    productListVM.initialize(@Html.Raw(ViewBag.JsonModel.ToString()));
+</script>

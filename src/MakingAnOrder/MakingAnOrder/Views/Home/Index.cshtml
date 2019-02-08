@@ -15,9 +15,6 @@
 <div id="main-grid" class="row">
     @Html.Partial("_Products")
     @Html.Partial("_MakeOrder")
-    <script>
-        MainPage.initialize();
-    </script>
 </div>
 
 @Html.Partial("_ProductCreateModal")
@@ -26,12 +23,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/app-pages")
-
-    <script>
-        var products = @Html.Raw(ViewBag.JsonModel.ToString());
-
-        for (var i in products) {
-            MainPage.viewModel.productsList.push(new MainPage.ProductVM(products[i]));
-        }
-    </script>
 }

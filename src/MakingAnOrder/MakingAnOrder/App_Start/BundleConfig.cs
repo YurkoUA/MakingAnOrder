@@ -44,7 +44,10 @@ namespace MakingAnOrder
                 "~/Scripts/app/app-navbar.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app-pages").Include(
-                "~/Scripts/app/main-page.js",
+                //"~/Scripts/app/main-page.js",
+                "~/Scripts/app/models/product.model.js",
+                "~/Scripts/app/products-list.vm.js",
+                "~/Scripts/app/make-order.vm.js",
                 "~/Scripts/app/product-create.js",
                 "~/Scripts/app/purchase.js",
                 "~/Scripts/app/order-history.js"));
