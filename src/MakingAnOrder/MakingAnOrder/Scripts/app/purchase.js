@@ -26,6 +26,7 @@
         AjaxService.post(submitUrl, self.getModel(), function (data) {
             toastr.success('The order has been purchased successfully!');
             ModalService.close(modalId);
+            $(document).trigger('order.clear');
         });
     };
 

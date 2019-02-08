@@ -4,6 +4,7 @@
     var self = this;
 
     self.initialize = function () {
+        initEvents();
         ko.applyBindings(self.viewModel, document.getElementById('main-grid'));
     }
 
@@ -55,6 +56,13 @@
         dropProduct: function (product) {
             self.dropProduct(product);
         },
+        handleProduct: function (product) {
+            if (product.InOrder()) {
+                self.viewModel.dropProduct(product);
+            } else {
+                self.viewModel.buyProduct(product);
+            }
+        },
         purchase: function () {
             Purchase.products(self.viewModel.orderProductsList());
             ModalService.show('purchase-modal');
@@ -68,4 +76,12 @@
             ModalService.show('product-create-modal');
         }
     };
+
+    function initEvents() {
+        $(document).off('order.clear').on('order.clear', function () {
+            self.viewModel.orderProductsList().forEach(function (p) {
+                self.viewModel.dropProduct(p);
+            });
+        });
+    }
 }).apply(MainPage);
