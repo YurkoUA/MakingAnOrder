@@ -49,7 +49,8 @@ namespace MakingAnOrder
                 "~/Scripts/app/products-list.vm.js",
                 "~/Scripts/app/make-order.vm.js",
                 "~/Scripts/app/purchase.vm.js",
-                "~/Scripts/app/product-create.js",
+                //"~/Scripts/app/product-create.js",
+                "~/Scripts/app/product-create.vm.js",
                 //"~/Scripts/app/purchase.js",
                 "~/Scripts/app/order-history.js"
             ));

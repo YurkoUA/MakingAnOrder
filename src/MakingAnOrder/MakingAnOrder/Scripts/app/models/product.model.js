@@ -3,10 +3,17 @@
         this.Id = ko.observable();
         this.Name = ko.observable();
         this.Description = ko.observable();
-        this.Price = ko.observable();
-        this.InOrder = ko.observable(0);
+        this.Price = ko.observable(0);
+        this.InOrder = ko.observable(false);
         this.Discount = ko.observable(0);
         this.TotalPrice = ko.computed(() => this.calculateTotalPrice());
+    }
+
+    initialize(product) {
+        this.Id(product.Id);
+        this.Name(product.Name);
+        this.Description(product.Description);
+        this.Price(product.Price);
     }
 
     calculateTotalPrice() {

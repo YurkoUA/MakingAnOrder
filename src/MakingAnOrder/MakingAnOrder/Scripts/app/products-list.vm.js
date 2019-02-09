@@ -29,12 +29,7 @@
     }
 
     addProduct() {
-        //ProductCreate.onProductAdded = function (product) {
-        //    self.viewModel.productsList.push(new self.ProductVM(product));
-        //    ModalService.close('product-create-modal');
-        //};
-
-        ModalService.show('product-create-modal');
+        $(document).trigger('product-create.open');
     }
     
     buyProduct(product) {
@@ -51,14 +46,6 @@
         }
     }
 
-    getHandleProductCallback(product) {
-        if (product.InOrder()) {
-            return this.dropProduct;
-        }
-
-        return this.buyProduct;
-    }
-
     isEmpty() {
         return this.products().length === 0;
     }
@@ -69,7 +56,12 @@
 
     bindEvents() {
         $(document).off('make-order.product.dropt').on('make-order.product.dropt', (event, data) => {
-            this.dropProduct(data);
+            data.product.Discount(0);
+            this.dropProduct(data.product);
+        });
+
+        $(document).off('product.created').on('product.created', (event, data) => {
+            this.products.push(data.product);
         });
     }
 }

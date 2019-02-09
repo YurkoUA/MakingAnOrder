@@ -13,7 +13,7 @@
     }
 
     dropProduct(product) {
-        $(document).trigger('make-order.product.dropt', product);
+        $(document).trigger('make-order.product.dropt', { product: product });
     }
 
     purchase() {
@@ -34,6 +34,10 @@
         });
 
         $(document).off('order.clear').on('order.clear', () => {
+            this.products().forEach(p => {
+                this.dropProduct(p);
+            });
+
             this.products.removeAll();
         });
     }

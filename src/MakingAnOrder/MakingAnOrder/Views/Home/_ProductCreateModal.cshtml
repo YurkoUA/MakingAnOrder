@@ -35,5 +35,6 @@
 </div>
 
 <script>
-    ProductCreate.initialize('@Url.Action("CreateProduct", "Home")');
+    var productCreateVM = new ProductCreateVM();
+    productCreateVM.initialize('@Url.Action("CreateProduct", "Home")', 'product-create-modal', 'product-create-form');
 </script>

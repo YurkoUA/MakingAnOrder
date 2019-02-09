@@ -182,6 +182,7 @@
     <Content Include="Scripts\app\models\product.model.js" />
     <Content Include="Scripts\app\order-history.js" />
     <Content Include="Scripts\app\product-create.js" />
+    <Content Include="Scripts\app\product-create.vm.js" />
     <Content Include="Scripts\app\products-list.vm.js" />
     <Content Include="Scripts\app\purchase.vm.js" />
     <Content Include="Scripts\app\purchase.js" />
