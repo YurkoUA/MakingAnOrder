@@ -20,7 +20,7 @@
         this.bindEvents();
 
         this.handleProduct = (product) => {
-            if (product.InOrder() == true) {
+            if (product.InOrder() === true) {
                 this.dropProduct(product);
             } else {
                 this.buyProduct(product);

@@ -2,7 +2,7 @@
     <h3 class="modal-title">Make Order</h3>
     <hr />
 
-    <div class="panel panel-info" data-bind="visible: !makeOrderVM.isEmpty()">
+    <div class="panel panel-info" data-bind="visible: !isEmpty()">
         <div class="panel-heading">Make Order</div>
 
         <div class="table-responsive">
@@ -15,7 +15,7 @@
                     </tr>
                 </thead>
 
-                <tbody data-bind="foreach: makeOrderVM.products">
+                <tbody data-bind="foreach: products">
                     <tr>
                         <td data-bind="text: Name"></td>
                         <td data-bind="text: TotalPrice"></td>
@@ -30,11 +30,11 @@
         </div>
 
         <div class="panel-footer">
-            <button class="btn btn-default" data-bind="click: makeOrderVM.products.purchase">Purchase</button>
+            <button class="btn btn-default" data-bind="click: purchase">Purchase</button>
         </div>
     </div>
 
-    <div class="alert alert-danger" role="alert" data-bind="visible: makeOrderVM.isEmpty()">
+    <div class="alert alert-danger" role="alert" data-bind="visible: isEmpty()">
         You have not bought anything.
     </div>
 </div>

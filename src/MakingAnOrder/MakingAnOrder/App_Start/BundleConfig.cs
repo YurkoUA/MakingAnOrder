@@ -48,9 +48,11 @@ namespace MakingAnOrder
                 "~/Scripts/app/models/product.model.js",
                 "~/Scripts/app/products-list.vm.js",
                 "~/Scripts/app/make-order.vm.js",
+                "~/Scripts/app/purchase.vm.js",
                 "~/Scripts/app/product-create.js",
-                "~/Scripts/app/purchase.js",
-                "~/Scripts/app/order-history.js"));
+                //"~/Scripts/app/purchase.js",
+                "~/Scripts/app/order-history.js"
+            ));
         }
 
         private static void RegisterStyleBundles(BundleCollection bundles)

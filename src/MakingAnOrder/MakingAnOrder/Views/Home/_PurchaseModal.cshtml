@@ -19,7 +19,7 @@
                                 </tr>
                             </thead>
 
-                            <tbody data-bind="foreach: Purchase.products">
+                            <tbody data-bind="foreach: products">
                                 <tr>
                                     <td data-bind="text: Name"></td>
                                     <td data-bind="text: TotalPrice"></td>
@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="panel-footer">
-                        <p>Total sum: <span data-bind="text: Purchase.totalSum"></span></p>
+                        <p>Total sum: <span data-bind="text: totalSum"></span></p>
                     </div>
                 </div>
             </div>
@@ -43,5 +43,6 @@
 </div>
 
 <script>
-    Purchase.initialize('@Url.Action("Purchase", "Home")');
+    var purchaseVM = new PurchaseVM();
+    purchaseVM.initialize('@Url.Action("Purchase", "Home")', 'purchase-modal');
 </script>

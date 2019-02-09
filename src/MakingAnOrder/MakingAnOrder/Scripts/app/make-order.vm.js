@@ -17,8 +17,7 @@
     }
 
     purchase() {
-        Purchase.products(this.products());
-        ModalService.show('purchase-modal');
+        $(document).trigger('purchase.open', { products: this.products() });
     }
 
     applyBindings() {
