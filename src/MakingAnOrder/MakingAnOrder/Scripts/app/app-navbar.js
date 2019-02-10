@@ -10,10 +10,10 @@
     self.openOrderHistory = function () {
         var modalId = 'order-history-modal';
         ModalService.show(modalId);
-        OrderHistory.initialize();
+        orderHistory.initialize();
 
         ModalService.onClosed(modalId, function () {
-            OrderHistory.reset();
+            orderHistory.reset();
         });
     };
 }).apply(AppNavbar);

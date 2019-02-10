@@ -52,7 +52,8 @@ namespace MakingAnOrder
                 //"~/Scripts/app/product-create.js",
                 "~/Scripts/app/product-create.vm.js",
                 //"~/Scripts/app/purchase.js",
-                "~/Scripts/app/order-history.js"
+                //"~/Scripts/app/order-history.js",
+                "~/Scripts/app/OrderHistory/order-history.controller.js"
             ));
         }
 

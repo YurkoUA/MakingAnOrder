@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary btn-group-justified" data-bind="click: runTable()">
+                    <button id="apply-filters-btn" type="button" class="btn btn-primary btn-group-justified">
                         Apply filters
                     </button>
                 </div>
@@ -62,6 +62,7 @@
 </div>
 
 <script>
-    OrderHistory.orderHistoryUrl = '@Url.Action("Orders", "Home")';
+    var orderHistory = new OrderHistoryController('@Url.Action("Orders", "Home")',
+        'order-history-table', 'start-date-picker', 'end-date-picker', 'apply-filters-btn')
 </script>
 
