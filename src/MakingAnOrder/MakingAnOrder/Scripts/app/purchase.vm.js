@@ -2,6 +2,7 @@
     constructor() {
         this.submitUrl = null;
         this.modalId = null;
+        this.modal = null;
 
         this.products = ko.observableArray([]);
         this.totalSum = ko.computed(() => {
@@ -18,6 +19,7 @@
     initialize(submitUrl, modalId) {
         this.submitUrl = submitUrl;
         this.modalId = modalId;
+        this.modal = new ModalWindow('#' + modalId);
         this.applyBindings();
         this.bindEvents();
     }
@@ -31,7 +33,7 @@
             method: 'POST',
             success: (data) => {
                 toastr.success('The order has been purchased successfully!');
-                ModalService.close(this.modalId);
+                this.modal.hide();
                 $(document).trigger('order.clear');
             },
             error: () => {
@@ -58,7 +60,7 @@
     bindEvents() {
         $(document).off('purchase.open').on('purchase.open', (event, data) => {
             this.products(data.products);
-            ModalService.show(this.modalId);
+            this.modal.show();
         });
     }
 }

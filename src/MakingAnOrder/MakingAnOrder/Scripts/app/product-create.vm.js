@@ -104,7 +104,8 @@
 
     bindEvents() {
         $(document).off('product-create.open').on('product-create.open', () => {
-            ModalService.show(this.modalId);
+            var modal = new ModalWindow('#' + this.modalId);
+            modal.show();
         });
     }
 }

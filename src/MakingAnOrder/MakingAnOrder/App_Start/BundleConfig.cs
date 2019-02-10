@@ -37,7 +37,9 @@ namespace MakingAnOrder
             bundles.Add(new ScriptBundle("~/bundles/app-services").Include(
                 "~/Scripts/app/services/toastr-service.js",
                 "~/Scripts/app/services/ajax-service.js",
-                "~/Scripts/app/services/modal-service.js"));
+                //"~/Scripts/app/services/modal-service.js",
+                "~/Scripts/app/services/modal-window.js"
+            ));
 
             bundles.Add(new ScriptBundle("~/bundles/app-general").Include(
                 "~/Scripts/app/constants.js",

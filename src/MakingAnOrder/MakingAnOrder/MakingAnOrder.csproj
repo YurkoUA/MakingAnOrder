@@ -190,6 +190,7 @@
     <Content Include="Scripts\app\purchase.js" />
     <Content Include="Scripts\app\services\ajax-service.js" />
     <Content Include="Scripts\app\services\modal-service.js" />
+    <Content Include="Scripts\app\services\modal-window.js" />
     <Content Include="Scripts\app\services\toastr-service.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />

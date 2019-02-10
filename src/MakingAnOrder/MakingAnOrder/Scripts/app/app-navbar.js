@@ -8,12 +8,9 @@
     }
 
     self.openOrderHistory = function () {
-        var modalId = 'order-history-modal';
-        ModalService.show(modalId);
-        orderHistory.initialize();
-
-        ModalService.onClosed(modalId, function () {
-            orderHistory.reset();
-        });
+        var modal = new ModalWindow('#order-history-modal');
+        modal.onShow(() => orderHistory.initialize());
+        modal.onHide(() => orderHistory.reset());
+        modal.show();
     };
 }).apply(AppNavbar);
