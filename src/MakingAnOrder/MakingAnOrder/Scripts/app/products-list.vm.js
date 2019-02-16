@@ -1,6 +1,7 @@
 ﻿class ProductsListVM {
     constructor() {
         this.products = ko.observableArray([]);
+        this.isEmpty = ko.computed(() => this.products().length === 0);
     }
 
     initialize(products) {
@@ -44,10 +45,6 @@
             product.InOrder(false);
             $(document).trigger('product.dropt', product);
         }
-    }
-
-    isEmpty() {
-        return this.products().length === 0;
     }
 
     applyBindings() {

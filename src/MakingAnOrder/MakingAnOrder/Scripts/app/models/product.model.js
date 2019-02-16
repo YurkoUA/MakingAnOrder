@@ -9,13 +9,6 @@
         this.TotalPrice = ko.computed(() => this.calculateTotalPrice());
     }
 
-    initialize(product) {
-        this.Id(product.Id);
-        this.Name(product.Name);
-        this.Description(product.Description);
-        this.Price(product.Price);
-    }
-
     calculateTotalPrice() {
         let price = this.Price();
         let discount = this.Discount();

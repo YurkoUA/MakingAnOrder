@@ -69,12 +69,10 @@
 
     triggerCreatedEvent() {
         var product = new Product();
-        product.initialize({
-            Id: this.Id(),
-            Name: this.Name(),
-            Description: this.Description(),
-            Price: this.Price()
-        });
+        product.Id = this.Id;
+        product.Name = this.Name;
+        product.Description = this.Description;
+        product.Price = this.Price;
 
         $(document).trigger('product.created', { product: product });
     }

@@ -1,15 +1,12 @@
 ﻿class MakeOrderVM {
     constructor() {
         this.products = ko.observableArray([]);
+        this.isEmpty = ko.computed(() => this.products().length === 0);
     }
 
     initialize() {
         this.applyBindings();
         this.bindEvents();
-    }
-
-    isEmpty() {
-        return this.products().length === 0;
     }
 
     dropProduct(product) {
