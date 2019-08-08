@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MakingAnOrder.Data.Entity;
 using MakingAnOrder.Infrastructure.Interfaces;
 using MakingAnOrder.Infrastructure.Repositories;
@@ -13,50 +14,50 @@ namespace MakingAnOrder.Business.Services
         {
         }
 
-        public IEnumerable<ProductVM> GetProducts()
+        public async Task<IEnumerable<ProductVM>> GetProductsAsync()
         {
             using (var repo = Factory.GetService<IProductRepository>())
             using (var mapper = Factory.GetService<IMappingService>())
             {
-                var products = repo.GetAllProducts();
+                var products = await repo.GetAllProductsAsync();
                 return mapper.ConvertCollectionTo<ProductVM>(products);
             }
         }
 
-        public ProductVM GetProduct(int id)
+        public async Task<ProductVM> GetProductAsync(int id)
         {
             using (var repo = Factory.GetService<IProductRepository>())
             using (var mapper = Factory.GetService<IMappingService>())
             {
-                var product = repo.GetProduct(id);
+                var product = await repo.GetProductAsync(id);
                 return mapper.ConvertTo<ProductVM>(product);
             }
         }
 
-        public int CreateProduct(ProductVM product)
+        public async Task<int> CreateProductAsync(ProductVM product)
         {
             using (var repo = Factory.GetService<IProductRepository>())
             using (var mapper = Factory.GetService<IMappingService>())
             {
                 var productEM = mapper.ConvertTo<Product>(product);
-                return repo.CreateProduct(productEM);
+                return await repo.CreateProductAsync(productEM);
             }
         }
 
-        public void EditProduct(ProductVM product)
+        public async Task EditProductAsync(ProductVM product)
         {
             using (var repo = Factory.GetService<IProductRepository>())
             using (var mapper = Factory.GetService<IMappingService>())
             {
-                repo.EditProduct(mapper.ConvertTo<Product>(product));
+                await repo.EditProductAsync(mapper.ConvertTo<Product>(product));
             }
         }
 
-        public void DeleteProduct(int id)
+        public async Task DeleteProductAsync(int id)
         {
             using (var repo = Factory.GetService<IProductRepository>())
             {
-                repo.DeleteProduct(id);
+                await repo.DeleteProductAsync(id);
             }
         }
     }

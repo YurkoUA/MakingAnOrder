@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Dapper;
 using MakingAnOrder.Data.Entity;
 using MakingAnOrder.Infrastructure.Database;
@@ -12,32 +13,32 @@ namespace MakingAnOrder.Data.Repositories
         {
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return GetAll<Product>();
+            return await GetAllAsync<Product>();
         }
 
-        public Product GetProduct(int id)
+        public async Task<Product> GetProductAsync(int id)
         {
-            return Get<Product>(id);
+            return await GetAsync<Product>(id);
         }
 
-        public int CreateProduct(Product product)
+        public async Task<int> CreateProductAsync(Product product)
         {
-            return Insert(product);
+            return await InsertAsync(product);
         }
 
-        public void EditProduct(Product product)
+        public async Task EditProductAsync(Product product)
         {
-            Update(product);
+            await UpdateAsync(product);
         }
 
-        public void DeleteProduct(int id)
+        public async Task DeleteProductAsync(int id)
         {
             var param = new DynamicParameters();
             param.Add("@id", id);
 
-            ExecuteSP("USPProductDelete", param);
+            await ExecuteSPAsync("USPProductDelete", param);
         }
     }
 }

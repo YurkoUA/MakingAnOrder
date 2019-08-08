@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using MakingAnOrder.Infrastructure.Database;
 
 namespace MakingAnOrder.Data
@@ -23,6 +24,22 @@ namespace MakingAnOrder.Data
         }
 
         public TResult PerformDbRequest<TResult>(Func<IDbConnection, TResult> func)
+        {
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                return func(db);
+            }
+        }
+
+        public async Task PerformDbRequestAsync(Func<IDbConnection, Task> action)
+        {
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                await action(db);
+            }
+        }
+
+        public Task<TResult> PerformDbRequestAsync<TResult>(Func<IDbConnection, Task<TResult>> func)
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {

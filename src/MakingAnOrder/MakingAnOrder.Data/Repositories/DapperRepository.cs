@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using MakingAnOrder.Infrastructure.Database;
@@ -18,136 +19,98 @@ namespace MakingAnOrder.Data.Repositories
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class
+        public async Task<IEnumerable<TEntity>> GetAllAsync<TEntity>() where TEntity : class
         {
-            return dbContext.PerformDbRequest(db => db.GetAll<TEntity>());
+            return await dbContext.PerformDbRequestAsync(db => db.GetAllAsync<TEntity>());
         }
 
-        public TEntity Get<TEntity>(int id) where TEntity : class
+        public async Task<TEntity> GetAsync<TEntity>(int id) where TEntity : class
         {
-            return dbContext.PerformDbRequest(db => db.Get<TEntity>(id));
+            return await dbContext.PerformDbRequestAsync(db => db.GetAsync<TEntity>(id));
         }
 
-        public int Insert<TEntity>(TEntity entity) where TEntity : class
+        public async Task<int> InsertAsync<TEntity>(TEntity entity) where TEntity : class
         {
-            return (int)dbContext.PerformDbRequest(db => db.Insert(entity));
+            return await dbContext.PerformDbRequestAsync(db => db.InsertAsync(entity));
         }
 
-        public void Update<TEntity>(TEntity entity) where TEntity : class
+        public async Task UpdateAsync<TEntity>(TEntity entity) where TEntity : class
         {
-            dbContext.PerformDbRequest(db => db.Update(entity));
+            await dbContext.PerformDbRequestAsync(db => db.UpdateAsync(entity));
         }
 
-        public void Delete<TEntity>(int id) where TEntity : class
+        public async Task DeleteAsync<TEntity>(int id) where TEntity : class
         {
-            dbContext.PerformDbRequest(db =>
+            await dbContext.PerformDbRequest(async db =>
             {
-                var entity = db.Get<TEntity>(id);
-                db.Delete(entity);
+                var entity = await db.GetAsync<TEntity>(id);
+                await db.DeleteAsync(entity);
             });
         }
 
-        public void ExecuteQuery(string query, object paramModel = null)
+        public async Task ExecuteQueryAsync(string query, object paramModel = null)
         {
-            dbContext.PerformDbRequest(db => db.Query(query, paramModel));
+            await dbContext.PerformDbRequestAsync(db => db.QueryAsync(query, paramModel));
         }
 
-        public IEnumerable<TEntity> ExecuteQuery<TEntity>(string query, object paramModel = null) where TEntity : class
+        public async Task<IEnumerable<TEntity>> ExecuteQueryAsync<TEntity>(string query, object paramModel = null) where TEntity : class
         {
-            return dbContext.PerformDbRequest(db => db.Query<TEntity>(query, paramModel));
+            return await dbContext.PerformDbRequestAsync(db => db.QueryAsync<TEntity>(query, paramModel));
         }
 
-        public TEntity ExecuteQuerySingle<TEntity>(string query, object paramModel = null) where TEntity : class
+        public async Task<TEntity> ExecuteQuerySingleAsync<TEntity>(string query, object paramModel = null) where TEntity : class
         {
-            return dbContext.PerformDbRequest(db => db.QuerySingle<TEntity>(query, paramModel));
+            return await dbContext.PerformDbRequestAsync(db => db.QuerySingleAsync<TEntity>(query, paramModel));
         }
 
-        public TAggregate ExecuteAggregateQuery<TAggregate>(string query, object paramModel = null)
+        public async Task<TAggregate> ExecuteAggregateQueryAsync<TAggregate>(string query, object paramModel = null)
         {
-            return dbContext.PerformDbRequest(db => db.Query<TAggregate>(query, paramModel)).FirstOrDefault();
+            return (await dbContext.PerformDbRequestAsync(db => db.QueryAsync<TAggregate>(query, paramModel))).FirstOrDefault();
         }
 
-        public void ExecuteSP(string spName, object paramModel = null)
+        public async Task ExecuteSPAsync(string spName, object paramModel = null)
         {
-            dbContext.PerformDbRequest(db => db.Query(spName, paramModel, commandType: CommandType.StoredProcedure));
+            await dbContext.PerformDbRequestAsync(db => db.QueryAsync(spName, paramModel, commandType: CommandType.StoredProcedure));
         }
 
-        public IEnumerable<TEntity> ExecuteSP<TEntity>(string spName, object paramModel = null) where TEntity : class
+        public async Task<IEnumerable<TEntity>> ExecuteSPAsync<TEntity>(string spName, object paramModel = null) where TEntity : class
         {
-            return dbContext.PerformDbRequest(db => db.Query<TEntity>(spName, paramModel, commandType: CommandType.StoredProcedure));
+            return await dbContext.PerformDbRequestAsync(db => db.QueryAsync<TEntity>(spName, paramModel, commandType: CommandType.StoredProcedure));
         }
 
-        public TEntity ExecuteSPSingle<TEntity>(string spName, object paramModel = null) where TEntity : class
+        public async Task<TEntity> ExecuteSPSingleAsync<TEntity>(string spName, object paramModel = null) where TEntity : class
         {
-            return dbContext.PerformDbRequest(db => db.QueryFirstOrDefault<TEntity>(spName, paramModel, commandType: CommandType.StoredProcedure));
+            return await dbContext.PerformDbRequestAsync(db => db.QueryFirstOrDefaultAsync<TEntity>(spName, paramModel, commandType: CommandType.StoredProcedure));
         }
 
-        public IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TReturn>(string spName, Func<TFirst, TSecond, TReturn> map, string splitOn, object paramModel = null)
+        public async Task<IEnumerable<TReturn>> ExecuteSPAsync<TFirst, TSecond, TReturn>(string spName, Func<TFirst, TSecond, TReturn> map, string splitOn, object paramModel = null)
             where TFirst : class
             where TSecond : class
             where TReturn : class
         {
-            return dbContext.PerformDbRequest(db => db.Query(spName, map, splitOn: splitOn, param: paramModel, commandType: CommandType.StoredProcedure));
+            return await dbContext.PerformDbRequestAsync(db => db.QueryAsync(spName, map, splitOn: splitOn, param: paramModel, commandType: CommandType.StoredProcedure));
         }
 
-        public IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TThird, TReturn>(string spName, Func<TFirst, TSecond, TThird, TReturn> map, string splitOn, object paramModel = null)
-            where TFirst : class
-            where TSecond : class
-            where TThird : class
-            where TReturn : class
-        {
-            return dbContext.PerformDbRequest(db => db.Query(spName, map, splitOn: splitOn, param: paramModel, commandType: CommandType.StoredProcedure));
-        }
-
-        public IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TThird, TFourth, TReturn>(string spName, Func<TFirst, TSecond, TThird, TFourth, TReturn> map, string splitOn, object paramModel = null)
-            where TFirst : class
-            where TSecond : class
-            where TThird : class
-            where TFourth : class
-            where TReturn : class
-        {
-            return dbContext.PerformDbRequest(db => db.Query(spName, map, splitOn: splitOn, param: paramModel, commandType: CommandType.StoredProcedure));
-        }
-
-        public IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(string spName, Func<TFirst, TSecond, TThird, TFourth, TFifth, TReturn> map, string splitOn, object paramModel = null)
-            where TFirst : class
-            where TSecond : class
-            where TThird : class
-            where TFourth : class
-            where TFifth : class
-            where TReturn : class
-        {
-            return dbContext.PerformDbRequest(db => db.Query(spName, map, splitOn: splitOn, param: paramModel, commandType: CommandType.StoredProcedure));
-        }
-
-        public IEnumerable<TReturn> ExecuteQuery<TFirst, TSecond, TReturn>(string query, Func<TFirst, TSecond, TReturn> map, string splitOn, object paramModel = null)
-            where TFirst : class
-            where TSecond : class
-            where TReturn : class
-        {
-            return dbContext.PerformDbRequest(db => db.Query(query, map, splitOn: splitOn, param: paramModel));
-        }
-
-        public IEnumerable<TReturn> ExecuteQuery<TFirst, TSecond, TThird, TReturn>(string query, Func<TFirst, TSecond, TThird, TReturn> map, string splitOn, object paramModel = null)
+        public async Task<IEnumerable<TReturn>> ExecuteSPAsync<TFirst, TSecond, TThird, TReturn>(string spName, Func<TFirst, TSecond, TThird, TReturn> map, string splitOn, object paramModel = null)
             where TFirst : class
             where TSecond : class
             where TThird : class
             where TReturn : class
         {
-            return dbContext.PerformDbRequest(db => db.Query(query, map, splitOn: splitOn, param: paramModel));
+            return await dbContext.PerformDbRequestAsync(db => db.QueryAsync(spName, map, splitOn: splitOn, param: paramModel, commandType: CommandType.StoredProcedure));
         }
 
-        public IEnumerable<TReturn> ExecuteQuery<TFirst, TSecond, TThird, TFourth, TReturn>(string query, Func<TFirst, TSecond, TThird, TFourth, TReturn> map, string splitOn, object paramModel = null)
+        public async Task<IEnumerable<TReturn>> ExecuteSPAsync<TFirst, TSecond, TThird, TFourth, TReturn>(string spName, Func<TFirst, TSecond, TThird, TFourth, TReturn> map, string splitOn, object paramModel = null)
             where TFirst : class
             where TSecond : class
             where TThird : class
             where TFourth : class
             where TReturn : class
         {
-            return dbContext.PerformDbRequest(db => db.Query(query, map, splitOn: splitOn, param: paramModel));
+            return await dbContext.PerformDbRequestAsync(db => db.QueryAsync(spName, map, splitOn: splitOn, param: paramModel, commandType: CommandType.StoredProcedure));
         }
 
-        public IEnumerable<TReturn> ExecuteQuery<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(string query, Func<TFirst, TSecond, TThird, TFourth, TFifth, TReturn> map, string splitOn, object paramModel = null)
+        public async Task<IEnumerable<TReturn>> ExecuteSPAsync<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(string spName, Func<TFirst, TSecond, TThird, TFourth, TFifth, TReturn> map, string splitOn, object paramModel = null)
             where TFirst : class
             where TSecond : class
             where TThird : class
@@ -155,7 +118,45 @@ namespace MakingAnOrder.Data.Repositories
             where TFifth : class
             where TReturn : class
         {
-            return dbContext.PerformDbRequest(db => db.Query(query, map, splitOn: splitOn, param: paramModel));
+            return await dbContext.PerformDbRequestAsync(db => db.QueryAsync(spName, map, splitOn: splitOn, param: paramModel, commandType: CommandType.StoredProcedure));
+        }
+
+        public async Task<IEnumerable<TReturn>> ExecuteQueryAsync<TFirst, TSecond, TReturn>(string query, Func<TFirst, TSecond, TReturn> map, string splitOn, object paramModel = null)
+            where TFirst : class
+            where TSecond : class
+            where TReturn : class
+        {
+            return await dbContext.PerformDbRequestAsync(db => db.QueryAsync(query, map, splitOn: splitOn, param: paramModel));
+        }
+
+        public async Task<IEnumerable<TReturn>> ExecuteQueryAsync<TFirst, TSecond, TThird, TReturn>(string query, Func<TFirst, TSecond, TThird, TReturn> map, string splitOn, object paramModel = null)
+            where TFirst : class
+            where TSecond : class
+            where TThird : class
+            where TReturn : class
+        {
+            return await dbContext.PerformDbRequestAsync(db => db.QueryAsync(query, map, splitOn: splitOn, param: paramModel));
+        }
+
+        public async Task<IEnumerable<TReturn>> ExecuteQueryAsync<TFirst, TSecond, TThird, TFourth, TReturn>(string query, Func<TFirst, TSecond, TThird, TFourth, TReturn> map, string splitOn, object paramModel = null)
+            where TFirst : class
+            where TSecond : class
+            where TThird : class
+            where TFourth : class
+            where TReturn : class
+        {
+            return await dbContext.PerformDbRequestAsync(db => db.QueryAsync(query, map, splitOn: splitOn, param: paramModel));
+        }
+
+        public async Task<IEnumerable<TReturn>> ExecuteQueryAsync<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(string query, Func<TFirst, TSecond, TThird, TFourth, TFifth, TReturn> map, string splitOn, object paramModel = null)
+            where TFirst : class
+            where TSecond : class
+            where TThird : class
+            where TFourth : class
+            where TFifth : class
+            where TReturn : class
+        {
+            return await dbContext.PerformDbRequestAsync(db => db.QueryAsync(query, map, splitOn: splitOn, param: paramModel));
         }
 
         public void Dispose()

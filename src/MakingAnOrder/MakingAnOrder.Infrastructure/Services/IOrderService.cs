@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MakingAnOrder.ViewModel;
 
 namespace MakingAnOrder.Infrastructure.Services
 {
     public interface IOrderService : IDisposable
     {
-        IEnumerable<OrderVM> GetOrders(OrderFilterVM orderFilter, out int totalCount);
-        int MakeOrder(IEnumerable<MakeOrderVM> products);
+        Task<(IEnumerable<OrderVM> Orders, int TotalCount)> GetOrdersAsync(OrderFilterVM orderFilter);
+        Task<int> MakeOrderAsync(IEnumerable<MakeOrderVM> products);
     }
 }

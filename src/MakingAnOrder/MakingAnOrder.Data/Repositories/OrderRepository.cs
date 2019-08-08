@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using Dapper;
 using MakingAnOrder.Data.Entity;
 using MakingAnOrder.Infrastructure.Database;
@@ -16,7 +17,7 @@ namespace MakingAnOrder.Data.Repositories
         {
         }
 
-        public IEnumerable<Order> GetAllOrders(OrderFilterDTO orderFilter, out int totalCount)
+        public async Task<(IEnumerable<Order> Orders, int TotalCount)> GetAllOrdersAsync(OrderFilterDTO orderFilter)
         {
             var param = new DynamicParameters();
             param.Add("@orderDateStart", orderFilter.StartDate);
@@ -29,7 +30,7 @@ namespace MakingAnOrder.Data.Repositories
 
             var ordersDictionary = new Dictionary<int, Order>();
 
-            var orders = ExecuteSP<Order, ProductOrder, Order>("USPGetOrders", (order, product) =>
+            var orders = (await ExecuteSPAsync<Order, ProductOrder, Order>("USPGetOrders", (order, product) =>
             {
                 if (!ordersDictionary.TryGetValue(order.Id, out Order orderEntry))
                 {
@@ -40,19 +41,20 @@ namespace MakingAnOrder.Data.Repositories
 
                 orderEntry.Products.Add(product);
                 return orderEntry;
-            }, "Id", param).Distinct();
+            }, "Id", param))
+                .Distinct();
 
-            totalCount = param.Get<int>("@totalCount");
-            return orders;
+            var totalCount = param.Get<int>("@totalCount");
+            return (orders, totalCount);
         }
 
-        public int MakeOrder(IEnumerable<MakeOrderProductDTO> products)
+        public async Task<int> MakeOrderAsync(IEnumerable<MakeOrderProductDTO> products)
         {
             var param = new DynamicParameters();
             param.Add("@products", products.AsDataTableParam().AsTableValuedParameter("MakeOrderProductType"));
             param.Add("@orderId", direction: ParameterDirection.Output, dbType: DbType.Int32);
 
-            ExecuteSP("USPMakeOrder", param);
+            await ExecuteSPAsync("USPMakeOrder", param);
             return param.Get<int>("@orderId");
         }
     }

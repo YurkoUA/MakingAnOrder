@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MakingAnOrder.Infrastructure.DTO;
 using MakingAnOrder.Infrastructure.Interfaces;
 using MakingAnOrder.Infrastructure.Repositories;
@@ -13,25 +14,25 @@ namespace MakingAnOrder.Business.Services
         {
         }
 
-        public IEnumerable<OrderVM> GetOrders(OrderFilterVM orderFilter, out int totalCount)
+        public async Task<(IEnumerable<OrderVM> Orders, int TotalCount)> GetOrdersAsync(OrderFilterVM orderFilter)
         {
             using (var repo = Factory.GetService<IOrderRepository>())
             using (var mapper = Factory.GetService<IMappingService>())
             {
                 var dto = mapper.ConvertTo<OrderFilterDTO>(orderFilter);
-                var orders = repo.GetAllOrders(dto, out int _totalCount);
-                totalCount = _totalCount;
-                return mapper.ConvertCollectionTo<OrderVM>(orders);
+                var orders = await repo.GetAllOrdersAsync(dto);
+
+                return (mapper.ConvertCollectionTo<OrderVM>(orders.Orders), orders.TotalCount);
             }
         }
 
-        public int MakeOrder(IEnumerable<MakeOrderVM> products)
+        public async Task<int> MakeOrderAsync(IEnumerable<MakeOrderVM> products)
         {
             using (var repo = Factory.GetService<IOrderRepository>())
             using (var mapper = Factory.GetService<IMappingService>())
             {
                 var dto = mapper.ConvertCollectionTo<MakeOrderProductDTO>(products);
-                return repo.MakeOrder(dto);
+                return await repo.MakeOrderAsync(dto);
             }
         }
     }

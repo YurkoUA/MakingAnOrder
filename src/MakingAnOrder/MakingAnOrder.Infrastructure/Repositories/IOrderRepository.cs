@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MakingAnOrder.Data.Entity;
 using MakingAnOrder.Infrastructure.DTO;
 
@@ -6,7 +7,7 @@ namespace MakingAnOrder.Infrastructure.Repositories
 {   
     public interface IOrderRepository : IRepository
     {
-        IEnumerable<Order> GetAllOrders(OrderFilterDTO orderFilter, out int totalCount);
-        int MakeOrder(IEnumerable<MakeOrderProductDTO> products);
+        Task<(IEnumerable<Order> Orders, int TotalCount)> GetAllOrdersAsync(OrderFilterDTO orderFilter);
+        Task<int> MakeOrderAsync(IEnumerable<MakeOrderProductDTO> products);
     }
 }
