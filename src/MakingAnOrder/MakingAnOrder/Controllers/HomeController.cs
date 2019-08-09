@@ -11,12 +11,12 @@ namespace MakingAnOrder.Controllers
     public class HomeController : BaseController
     {
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             using (var orderService = Factory.GetService<IOrderService>())
             using (var productService = Factory.GetService<IProductService>())
             {
-                var products = productService.GetProductsAsync();
+                var products = await productService.GetProductsAsync();
                 return ViewWithJson("Index", products);
             }
         }

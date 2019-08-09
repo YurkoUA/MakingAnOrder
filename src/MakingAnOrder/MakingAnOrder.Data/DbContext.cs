@@ -39,11 +39,11 @@ namespace MakingAnOrder.Data
             }
         }
 
-        public Task<TResult> PerformDbRequestAsync<TResult>(Func<IDbConnection, Task<TResult>> func)
+        public async Task<TResult> PerformDbRequestAsync<TResult>(Func<IDbConnection, Task<TResult>> func)
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                return func(db);
+                return await func(db);
             }
         }
     }
